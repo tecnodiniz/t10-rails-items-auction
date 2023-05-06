@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <% if user_session%>
+            <%if current_user.admin == true%>
+              <%= link_to "Gerenciar usuários", users_path%>
+            <%end%>
+
+          <%else%>
+          <%= link_to "Login", new_user_session_path %>
+        <%end%>
+      </ul>
+    </nav>
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>

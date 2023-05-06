@@ -1,7 +1,6 @@
-<h2>Sign up</h2>
+<h2>New User</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_with model: @user, url: create_user_path do |f| %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -20,20 +19,17 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-  
-    <div class="field">
+
+  <div class="field">
     <%= f.label :cpf, 'CPF' %><br />
     <%= f.text_field :cpf %>
   </div>
 
-    <div class="field">
-    <%= f.label :admin, 'Admin' %><br />
-    <%= f.check_box :admin  %>
+  <div class="actions">
+    <%= f.submit "Create" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+

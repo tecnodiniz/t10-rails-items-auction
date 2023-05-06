@@ -1,0 +1,53 @@
+<div id ="admin" >
+  <%= form_with model: @user, url: create_admin_path do |f| %>
+
+    <div class="field">
+      <%= f.label :name,'User' %><br />
+      <%= f.text_field :name, autofocus: true, id: 'email-input' %>
+
+    </div>
+      <%= f.text_field :email, autofocus: true, value:'@leilaodogalpao.com.br', disabled: true%>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :cpf, 'CPF' %><br />
+      <%= f.text_field :cpf %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
+
+  <% end %>
+</div>
+
+<script type="text/javascript">
+
+const emailInput = document.getElementById('email-input');
+
+emailInput.addEventListener('input', function() {
+  const value = emailInput.value;
+
+  const regex = /^[a-zA-Z0-9._-]+$/; // Expressão regular permitindo letras, números, ponto, underscore e hífen
+
+  if (!regex.test(value)) {
+    emailInput.setCustomValidity('Caracteres especiais não são permitidos no campo de email.');
+  } else {
+    emailInput.setCustomValidity('');
+  }
+  });
+
+
+</script>
