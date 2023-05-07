@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :users, only: [:index,:new, :create]
+  resources :items, only: [:new, :create,:show,:index]
   post 'create_user' => 'users#create'
   post 'create_admin' => 'users#create_admin'
   get 'new_admin' => 'users#new_admin'

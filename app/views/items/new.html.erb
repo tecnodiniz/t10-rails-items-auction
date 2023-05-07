@@ -1,0 +1,26 @@
+<%= form_with model: @item do |f|%>
+
+    <%= f.label :name, 'Nome'%>
+    <%= f.text_field :name %>
+
+    <%= f.label :url_img, 'Url da imagem'%>
+    <%= f.text_field :url_img %>
+
+    <%= f.label :weight, 'Peso'%>
+    <%= f.number_field :weight %>
+
+    <%= f.label :height, 'Altura'%>
+    <%= f.number_field :height %>
+
+    <%= f.label :width, 'Largura'%>
+    <%= f.number_field :width %>
+
+    <%= f.label :depth, 'Profundidade'%>
+    <%= f.number_field :depth %>
+    
+     <%= f.label :category_id, 'Categoria'%>
+
+    <%= f.collection_select :category_id, Category.order(:description), :id, :description%>
+
+    <%= f.submit 'Enviar'  %>
+<%end%>

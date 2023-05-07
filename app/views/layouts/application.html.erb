@@ -12,15 +12,16 @@
   <body>
     <nav>
       <ul>
+       <li> <%= link_to "Itens", items_path %></li>
         <% if user_session%>
             <%if current_user.admin == true%>
-              <%= link_to "Gerenciar usuários", users_path%>
+             <li> <%= link_to "Gerenciar usuários", users_path%></li>
             <%end%>
-
+        </ul>
           <%else%>
           <%= link_to "Login", new_user_session_path %>
         <%end%>
-      </ul>
+      
     </nav>
 
   <p class="notice"><%= notice %></p>
