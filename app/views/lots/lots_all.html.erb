@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Status</th>
+        <th>Usuário</th>
+    </tr>
+    <% @lots.each do |l|%>
+        <tr>
+            <td> <%= l.code%> </td>
+            <td> <%= l.aproved%> </td>
+            <td> <%= l.user.email%> </td>
+            
+        </tr>
+    <% end%>
+</table>

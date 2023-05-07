@@ -7,8 +7,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index,:new, :create]
   resources :items, only: [:new, :create,:show,:index]
+  resources :lots, only: [:new, :create,:index, :show]
+
   post 'create_user' => 'users#create'
   post 'create_admin' => 'users#create_admin'
   get 'new_admin' => 'users#new_admin'
+
+  get 'lots_all' => 'lots#lots_all'
  
 end
