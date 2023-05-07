@@ -14,14 +14,16 @@
       <ul>
        <li> <%= link_to "Itens", items_path %></li>
         <% if user_session%>
-            <%if current_user.admin == true%>
+            <%if current_user.admin?%>
              <li> <%= link_to "Gerenciar usuários", users_path%></li>
             <%end%>
-        </ul>
-          <%else%>
-          <%= link_to "Login", new_user_session_path %>
         <%end%>
-      
+        </ul>
+         <%if user_signed_in? %>  
+               <%= button_to "Sair", destroy_user_session_path, method: :delete %>
+              <%else%>
+              <%= link_to "Login", new_user_session_path %>
+         <%end%>
     </nav>
 
   <p class="notice"><%= notice %></p>

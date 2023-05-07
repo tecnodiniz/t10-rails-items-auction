@@ -1,5 +1,9 @@
 <div>
-    <%= link_to "Cadastrar item para leilão", new_item_path %>
+    <%if user_session%>
+        <% if current_user.admin?%>
+            <%= link_to "Cadastrar item para leilão", new_item_path %>
+        <%end%>
+    <%end%>
 </div>
 
 <div>
