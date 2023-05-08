@@ -6,10 +6,10 @@
     </tr>
     <% @lots.each do |l|%>
         <tr>
-            <td> <%= l.code%> </td>
+            <td> <%= link_to l.code, view_items_path(l)%> </td>
             <td> <%= l.aproved%> </td>
             <td> <%= l.user.email%> </td>
-            <td></td>
+            <td><%= link_to "Adicionar item", add_item_path(l) %></td>
         </tr>
     <% end%>
 </table>

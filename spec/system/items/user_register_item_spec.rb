@@ -32,6 +32,7 @@ describe 'Usuário administrador cadastra item para leilão' do
         expect(page).to have_content 'Item cadastrado com sucesso'
         expect(page).to have_content "#{item.code}"
         expect(page).to have_content "Televisão Samsung"
+        
     end
 
 end
