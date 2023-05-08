@@ -21,11 +21,11 @@ describe 'A partir da tela inicial' do
         element = find(:css, "input[id$='email-input']")
 
         fill_in element[:name],	with: "diniz" 
-        fill_in "Password",	with: "password@leilaodogalpao"
-        fill_in "Password confirmation",	with: "password@leilaodogalpao"
+        fill_in "Senha",	with: "password@leilaodogalpao"
+        fill_in "Confirme sua senha",	with: "password@leilaodogalpao"
         fill_in "CPF", with: "23667678703"
 
-        click_on "Create"
+        click_on "Criar Usuário"
         new_user = User.last
 
         expect(page).to have_content 'User was successfully created.'
@@ -41,12 +41,12 @@ describe 'A partir da tela inicial' do
         click_on 'Gerenciar usuários'
         click_on 'Cadastrar usuário'
 
-        fill_in "Email",	with: "diniz@gmail.com.br" 
-        fill_in "Password",	with: "password@leilaodogalpao"
-        fill_in "Password confirmation",	with: "password@leilaodogalpao"
+        fill_in "E-mail",	with: "diniz@gmail.com.br" 
+        fill_in "Senha",	with: "password@leilaodogalpao"
+        fill_in "Confirme sua senha",	with: "password@leilaodogalpao"
         fill_in "CPF", with: "23667678703"
 
-        click_on 'Create'
+        click_on 'Criar Usuário'
  
 
         

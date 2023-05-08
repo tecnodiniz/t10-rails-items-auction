@@ -1,1 +1,22 @@
-<%= link_to "Visualizar todos os lotes", lots_all_path %>
+<% if user_session%>
+    <% if current_user.admin%>
+        <%= link_to "Visualizar todos os lotes", lots_all_path %>
+    <% end %>
+<% end %>
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Inicio</th>
+        <th>Valor</th>
+    </tr>
+    <% @lots.each do |l|%>
+        <%if l.aproved == 'aprovado'%>
+            <tr>
+                <td> <%= l.code %> </td>
+                <td> <%= I18n.localize(l.start_date) %> </td>
+                <td> R$<%= l.min_value %> </td>
+                
+            </tr>
+        <%end%>
+    <% end%>
+</table>

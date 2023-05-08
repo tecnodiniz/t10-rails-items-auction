@@ -7,11 +7,11 @@ describe 'Usuário se autentica' do
         visit root_path
         click_on "Login"
 
-        fill_in "Email",	with: "eduardo@gmail.com"
-        fill_in "Password",	with: "eduardo123"  
+        fill_in "E-mail",	with: "eduardo@gmail.com"
+        fill_in "Senha",	with: "eduardo123"  
 
         click_on 'Log in'
 
-        expect(page).to have_content 'Signed in successfully.'
+        expect(page).to have_content 'Login efetuado com sucesso.'
     end
 end

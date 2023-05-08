@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Usuário autenticado cadastra item para leilão' do 
-    it 'a partir da tela inicial' do 
+describe 'Usuário administrador cadastra item para leilão' do 
+    it 'com sucesso' do 
         user = User.create!(email:'eduardo@leilaodogalpao.com.br', password: 'password', cpf:'44047449865', admin: true)
         login_as(user)
 
@@ -22,17 +22,16 @@ describe 'Usuário autenticado cadastra item para leilão' do
         fill_in "Largura", with: '90'
         fill_in "Profundidade", with: '20'
         fill_in "Peso", with: '8000'
+
         select category.description, from: "Categoria"
 
-        click_on "Enviar"
+        click_on "Criar Item"
 
         item = Item.last
 
         expect(page).to have_content 'Item cadastrado com sucesso'
         expect(page).to have_content "#{item.code}"
         expect(page).to have_content "Televisão Samsung"
-
-         
     end
 
 end

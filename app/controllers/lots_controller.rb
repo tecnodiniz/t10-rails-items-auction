@@ -11,4 +11,6 @@ class LotsController < ApplicationController
     def lots_all 
         @lots = Lot.all
     end
+
 end
+
