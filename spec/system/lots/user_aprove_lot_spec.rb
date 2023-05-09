@@ -14,10 +14,10 @@ describe "Usuário autenticado acessa todos os lotes " do
         Item.create!(name:'Mouse', url_img:'',weight:200,height:10,width:10, 
             depth:20, category:c_2)
 
-        Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
-        Lot.create!(code: 'BAT-412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'BAT412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
         login_as(user_2)
@@ -49,10 +49,10 @@ describe "Usuário autenticado acessa todos os lotes " do
         Item.create!(name:'Mouse', url_img:'',weight:200,height:10,width:10, 
             depth:20, category:c_2)
 
-        Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
-        Lot.create!(code: 'BAT-412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'BAT412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
         login_as(user)
@@ -84,10 +84,10 @@ describe "Usuário autenticado acessa todos os lotes " do
         Item.create!(name:'Mouse', url_img:'',weight:200,height:10,width:10, 
             depth:20, category:c_2)
 
-        Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
-        Lot.create!(code: 'BAT-412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'BAT412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
         login_as(user_2)
@@ -103,7 +103,7 @@ describe "Usuário autenticado acessa todos os lotes " do
             button.click
         end
         visit lots_path
-        expect(page).to have_content 'GAD-459812'  
+        expect(page).to have_content 'GAD459812'  
     end
 
     it 'e não vê lote na página de lotes aprovados ao tentar aprovar próprio lote' do 
@@ -119,10 +119,10 @@ describe "Usuário autenticado acessa todos os lotes " do
         Item.create!(name:'Mouse', url_img:'',weight:200,height:10,width:10, 
             depth:20, category:c_2)
 
-        Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
-        Lot.create!(code: 'BAT-412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'BAT412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00, user:user)
 
         login_as(user)
@@ -138,7 +138,7 @@ describe "Usuário autenticado acessa todos os lotes " do
             button.click
         end
         visit lots_path
-        expect(page).not_to have_content 'GAD-459812'  
+        expect(page).not_to have_content 'GAD459812'  
 
     end
     

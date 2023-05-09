@@ -1,0 +1,28 @@
+
+<% if @lot.errors.any?%>
+  <ul>
+  <%@lot.errors.full_messages.each do |msg|%>
+  <li><%=msg%></li>
+  <%end%>
+  </ul>
+<%end%>
+
+<%= form_with model: @lot do |f|%>
+    <%=f.label :code, 'Código'%>
+    <%=f.text_field :code %>
+
+    <%=f.label :start_date, 'Início'%>
+    <%=f.date_field :start_date%>
+
+    <%=f.label :limit_date, 'Limite'%>
+    <%=f.date_field :limit_date%>
+
+    <%=f.label :min_value, 'Valor mínimo'%>
+    <%=f.number_field :min_value %>
+
+    <%=f.label :dif_value, 'Diferença de lance'%>
+    <%=f.number_field :dif_value %>
+
+    <%=f.submit 'Criar lote'%>
+
+<%end%>

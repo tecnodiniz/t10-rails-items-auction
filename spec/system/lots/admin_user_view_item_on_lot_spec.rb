@@ -12,7 +12,7 @@ describe "Usuário vê itens no lote" do
         Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
                     depth:5, category:c_1)
 
-        lot = Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        lot = Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
             dif_value:500.00,aproved:false, user:user)
 
         LotItem.create!(lot_id: lot.id, item_id: item.id)
@@ -24,7 +24,7 @@ describe "Usuário vê itens no lote" do
         click_on "Lotes para leilão"
         click_on "Visualizar todos os lotes"
 
-        click_on 'GAD-459812'
+        click_on 'GAD459812'
 
         expect(page).to have_content 'Televisão Samsung'
     end
