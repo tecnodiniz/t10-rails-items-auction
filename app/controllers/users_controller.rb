@@ -24,13 +24,13 @@ class UsersController < ApplicationController
 
     def create_admin 
         @user = User.new(params.require(:user).permit(:password, :password_confirmation, :cpf).merge(
-            email: "#{:name}@leilaodogalpao.com.br", admin: true))
+            email: "#{params[:user][:name]}@leilaodogalpao.com.br", admin: true))
 
         if @user.save
             redirect_to users_path, notice: 'User was successfully created.'
         else
             flash.now[:notice] = "Prencha os campos corretamente"
-            render 'new'
+            render 'new_admin'
         end
     end
 end

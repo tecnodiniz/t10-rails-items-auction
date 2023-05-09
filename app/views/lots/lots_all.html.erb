@@ -9,7 +9,8 @@
             <td> <%= link_to l.code, view_items_path(l)%> </td>
             <td> <%= l.aproved%> </td>
             <td> <%= l.user.email%> </td>
-            <td><%= link_to "Adicionar item", add_item_path(l) %></td>
+            <td><%= link_to "Adicionar item", add_item_path(l) %></td> 
+            <td> <%= button_to "Aprovar lote", aprove_path(l), id:l.id, method: :put%> </td>
         </tr>
     <% end%>
 </table>

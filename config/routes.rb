@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   post 'add_item_lot' => 'lot_items#create'
 
   get 'view_items/:id' => 'lot_items#index', as: 'view_items'
- 
+  
+  put 'aprove/:id' => 'lots#aprove', as: 'aprove'
 end
