@@ -31,8 +31,16 @@ class LotItemsController < ApplicationController
        if Lot.find(params[:id]).aproved == "aprovado"
             redirect_to lots_all_path, notice: "Não é possível adicionar itens"
        end
-       
+    end
 
+    def destroy
+        lot_item = LotItem.find(params[:id])
+        lot_item.destroy
+
+        item = Item.find(lot_item.item_id)
+        item.update(selected: false)
+
+        redirect_to view_items_path, notice: "Item removido"
     end
 
 end

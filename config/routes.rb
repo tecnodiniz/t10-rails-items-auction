@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :users, only: [:index,:new, :create]
-  resources :items, only: [:new, :create,:show,:index]
+  resources :items, only: [:new, :create,:show,:index,]
   resources :lots, only: [:new, :create,:index, :show]
-  resources :lot_items, only: [:create,:index]
+  resources :lot_items, only: [:create,:index, :destroy]
 
 
   post 'create_user' => 'users#create'
