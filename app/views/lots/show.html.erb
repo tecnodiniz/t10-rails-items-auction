@@ -1,0 +1,12 @@
+<h1>Lote <%= @lot.code%></h1>
+
+Inicio: <%= I18n.localize(@lot.start_date) %> </br >
+Fim: <%=  I18n.localize(@lot.limit_date)  %></br >
+Lance mínimo: R$<%=@lot.min_value%></br >
+
+<h1>Items</h1>
+<ul>
+<% @items.each do |i|%>
+   <li> <%= Item.find(i.item_id).name%> </li>
+<%end%>
+</ul>

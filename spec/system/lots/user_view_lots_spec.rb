@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'A partir da tela inicial' do 
-    it 'aprovados em andamento' do 
+    it 'usuário vê lotes aprovados em andamento' do 
         user = User.create!(email:'eduardo@leilãoestoque.com.br', password: 'eduardo123',cpf:'44047449865', admin: false)
 
         Lot.create!(code: 'GAD459812', start_date:'10-05-2023',limit_date:'04-06-2023',min_value:1000.00,
@@ -22,7 +22,7 @@ describe 'A partir da tela inicial' do
 
     end
 
-    it 'aprovados futuros' do 
+    it 'usuário vê lotes aprovados futuros' do 
         user = User.create!(email:'eduardo@leilãoestoque.com.br', password: 'eduardo123',cpf:'44047449865', admin: false)
 
         Lot.create!(code: 'BED459232', start_date:'05-06-2023',limit_date:'05-07-2023',min_value:2000.00,

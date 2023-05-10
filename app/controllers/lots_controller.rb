@@ -21,6 +21,8 @@ class LotsController < ApplicationController
         
     end
     def show 
+        @lot = Lot.find(params[:id])
+        @items = LotItem.where(lot_id: params[:id])
 
     end
 
