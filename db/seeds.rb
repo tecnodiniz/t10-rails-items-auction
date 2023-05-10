@@ -16,8 +16,8 @@ Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:9
 Item.create!(name:'Mouse', url_img:'',weight:200,height:10,width:10, 
     depth:20, category:c_2)
 
-Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+Lot.create!(code: 'GAD-459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000,
     dif_value:500.00,aproved:true, user:user)
 
-Lot.create!(code: 'BAT-412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+Lot.create!(code: 'BAT-412820', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000,
     dif_value:500.00, user:user)

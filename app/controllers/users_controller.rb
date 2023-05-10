@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     end
 
     def create_admin 
+        
         @user = User.new(params.require(:user).permit(:password, :password_confirmation, :cpf).merge(
             email: "#{params[:user][:name]}@leilaodogalpao.com.br", admin: true))
 

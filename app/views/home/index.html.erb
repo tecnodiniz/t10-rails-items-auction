@@ -1,2 +1,17 @@
 <h1>Página Principal</h1>
 <%= I18n.localize(Date.today)%>
+
+<h1>Lotes em andamento</h1>
+<%@lots.each do |l|%>
+    <%if l.start_date <= Date.today%>
+       Code: <%=l.code%> Inicio: <%=I18n.localize(l.start_date)%>
+    <%end%>
+<%end%>
+
+<h1>Lotes futuros</h1>
+<%@lots.each do |l|%>
+    <%if l.start_date > Date.today%>
+       Code: <%=l.code%> Inicio: <%=I18n.localize(l.start_date)%>
+    <%end%>
+<%end%>
+

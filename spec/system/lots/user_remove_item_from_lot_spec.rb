@@ -12,7 +12,7 @@ describe "Usuário remove item do lote" do
         Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
                     depth:5, category:c_1)
 
-        Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'GAD459812', start_date:'10-04-2023',limit_date:'04-05-2023',min_value:1000.00,
             dif_value:500.00,aproved:false, user:user)
 
         LotItem.create!(lot_id:1,item_id:1)
@@ -48,7 +48,7 @@ describe "Usuário remove item do lote" do
         Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
                     depth:5,selected:true, category:c_1)
 
-        Lot.create!(code: 'GAD459812', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
+        Lot.create!(code: 'GAD459812', start_date:'04-04-2023',limit_date:'04-05-2023',min_value:1000.00,
             dif_value:500.00,aproved:false, user:user)
 
         LotItem.create!(lot_id:1,item_id:1)
