@@ -37,6 +37,8 @@ class LotsController < ApplicationController
         if current_user.id == @lot.user_id
             redirect_to lots_all_path, notice: 'Você não pode aprovar seu próprio lote'
         else
+            Aproved.create!(user_id: current_user.id, lot_id: @lot.id, date_aproved: Date.today)
+
             @lot.update(aproved: true)
         
             redirect_to lots_all_path, notice: 'Lote aprovado'

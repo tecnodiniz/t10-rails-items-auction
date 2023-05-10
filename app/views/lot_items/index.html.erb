@@ -1,4 +1,8 @@
 <h1>Lote: <%= @lot.code%></h1> 
+<%if @user%>
+    Lote aprovado por: <%= @user.email%>
+<%end%>
+<p><p>
 <table>
     <tr>
         <th>Item</th>

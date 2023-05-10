@@ -3,6 +3,13 @@ class LotItemsController < ApplicationController
     def index 
         @items = LotItem.where(lot_id: params[:id])
         @lot = Lot.find(params[:id])
+
+        if @lot.aproved == "aprovado"
+    
+            log =  Aproved.find_by(lot_id: params[:id])
+            @user = User.find(log.user_id)
+        end
+
     end
     
     def create 
