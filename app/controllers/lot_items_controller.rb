@@ -1,5 +1,7 @@
 class LotItemsController < ApplicationController
     before_action :authenticate_user!
+
+
     def index 
         @items = LotItem.where(lot_id: params[:id])
         @lot = Lot.find(params[:id])
@@ -42,12 +44,20 @@ class LotItemsController < ApplicationController
 
     def destroy
         lot_item = LotItem.find(params[:id])
-        lot_item.destroy
+        lot =  Lot.find(lot_item.lot_id)
+     
+        if lot.aproved == "aprovado"
+            redirect_to view_items_path, notice: "Não é possível remover itens"
+        else
+            lot_item.destroy
 
-        item = Item.find(lot_item.item_id)
-        item.update(selected: false)
+            item = Item.find(lot_item.item_id)
+            item.update(selected: false)
 
-        redirect_to view_items_path, notice: "Item removido"
+            redirect_to view_items_path, notice: "Item removido"
+    
+        end
+
     end
 
 end

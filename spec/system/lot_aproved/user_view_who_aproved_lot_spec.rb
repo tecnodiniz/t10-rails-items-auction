@@ -37,5 +37,5 @@ describe "Usuário autenticado acessa todos os lotes " do
         expect(page).to have_content 'Lote aprovado por: eduardo@leilãoestoque.com.br'  
 
     end
-    
+
 end
