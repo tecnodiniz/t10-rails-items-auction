@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  
+  devise_for :users, controllers: { registrations: 'registrations' }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -15,7 +17,6 @@ Rails.application.routes.draw do
   post 'create_admin' => 'users#create_admin'
   get 'new_admin' => 'users#new_admin'
 
-  
   get 'lots_all' => 'lots#lots_all'
   get '/add_item/:id', to: 'lot_items#add_item', as: 'add_item'
   post 'add_item_lot' => 'lot_items#create'
@@ -23,4 +24,5 @@ Rails.application.routes.draw do
   get 'view_items/:id' => 'lot_items#index', as: 'view_items'
   
   put 'aprove/:id' => 'lots#aprove', as: 'aprove'
+
 end
