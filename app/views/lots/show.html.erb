@@ -1,8 +1,15 @@
 <h1>Lote <%= @lot.code%></h1>
 
+<%if @bid%>
+   <p>Seu lance: <%= @bid.value %></p>
+<%end%>
+
+
+
 Inicio: <%= I18n.localize(@lot.start_date) %> </br >
 Fim: <%=  I18n.localize(@lot.limit_date)  %></br >
 Lance mínimo: R$<%=@lot.min_value%></br >
+Diferença de lance: R$<%=@lot.dif_value%></br >
 
 <h1>Items</h1>
 <ul>
@@ -10,3 +17,5 @@ Lance mínimo: R$<%=@lot.min_value%></br >
    <li> <%= Item.find(i.item_id).name%> </li>
 <%end%>
 </ul>
+
+<%= link_to "Dar lance", make_bid_path(@lot) %>

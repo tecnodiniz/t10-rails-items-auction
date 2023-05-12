@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create,:show,:index,]
   resources :lots, only: [:new, :create,:index, :show]
   resources :lot_items, only: [:create,:index, :destroy]
+  resources :bids, only: [:create]
 
 
   post 'create_user' => 'users#create'
@@ -24,5 +25,7 @@ Rails.application.routes.draw do
   get 'view_items/:id' => 'lot_items#index', as: 'view_items'
   
   put 'aprove/:id' => 'lots#aprove', as: 'aprove'
+
+  get 'bid/:id' => 'lots#bid', as: 'make_bid'
 
 end

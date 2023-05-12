@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-    before_action :authenticate_user!, only: [:lots_all, :new, :create]
+    before_action :authenticate_user!, only: [:lots_all, :new, :create, :bid, :aprove]
 
     def index 
         @lots = Lot.all
@@ -23,6 +23,11 @@ class LotsController < ApplicationController
     def show 
         @lot = Lot.find(params[:id])
         @items = LotItem.where(lot_id: params[:id])
+    
+
+        if user_session
+           @bid =  Bid.where(lot_id: params[:id], user_id: current_user.id).last
+        end
 
     end
 
@@ -45,6 +50,11 @@ class LotsController < ApplicationController
         end 
 
 
+    end
+
+    def bid 
+        @bid = Bid.new
+        @lot = Lot.find(params[:id])
     end
 
 end

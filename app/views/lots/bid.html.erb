@@ -1,0 +1,14 @@
+
+<%if Bid.all.any?%>
+Lance atual: <%= Bid.last.value%>
+<%end%>
+
+<%= form_with model: @bid do |f|%>
+    <%= f.number_field :lot_id, value: @lot.id, hidden: true%>
+
+    <%= f.label :value, 'Lance'%>
+    <%= f.number_field :value%>
+
+    <%= f.submit 'Enviar'%>
+    
+<%end%>

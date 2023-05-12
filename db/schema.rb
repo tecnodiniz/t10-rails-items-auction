@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_172804) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_173446) do
   create_table "aproveds", force: :cascade do |t|
     t.integer "lot_id", null: false
     t.integer "user_id", null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_172804) do
     t.datetime "updated_at", null: false
     t.index ["lot_id"], name: "index_aproveds_on_lot_id"
     t.index ["user_id"], name: "index_aproveds_on_user_id"
+  end
+
+  create_table "bids", force: :cascade do |t|
+    t.integer "lot_id", null: false
+    t.integer "user_id", null: false
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lot_id"], name: "index_bids_on_lot_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -80,6 +90,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_172804) do
 
   add_foreign_key "aproveds", "lots"
   add_foreign_key "aproveds", "users"
+  add_foreign_key "bids", "lots"
+  add_foreign_key "bids", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "lot_items", "items"
   add_foreign_key "lot_items", "lots"
