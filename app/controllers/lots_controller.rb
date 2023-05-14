@@ -21,14 +21,18 @@ class LotsController < ApplicationController
         
     end
     def show 
+        
         @lot = Lot.find(params[:id])
-        @items = LotItem.where(lot_id: params[:id])
-    
+        if @lot.aproved == 'aprovado'
+            @items = LotItem.where(lot_id: params[:id])
+        
 
-        if user_session
-           @bid =  Bid.where(lot_id: params[:id], user_id: current_user.id).last
+            if user_session
+            @bid =  Bid.where(lot_id: params[:id], user_id: current_user.id).last
+            end
+        else
+            redirect_to root_path
         end
-
     end
 
     def lots_all 
@@ -53,8 +57,16 @@ class LotsController < ApplicationController
     end
 
     def bid 
-        @bid = Bid.new
+      
         @lot = Lot.find(params[:id])
+
+        if @lot.limit_date < Date.today
+            redirect_to lot_path(@lot), notice: 'Este leilão já foi encerrado '
+        elsif @lot.start_date > Date.today
+            redirect_to lot_path(@lot), notice: 'Este leilão não foi iniciado'
+        else
+            @bid = Bid.new
+        end
     end
 
 end

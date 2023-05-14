@@ -3,15 +3,15 @@
 
 <h1>Lotes em andamento</h1>
 <%@lots.each do |l|%>
-    <%if l.start_date <= Date.today%>
-       Code: <%=link_to l.code, lot_path(l)%> Inicio: <%=I18n.localize(l.start_date)%>
+    <%if l.start_date <= Date.today  %>
+       Code: <%=link_to l.code, lot_path(l)%> Inicio: <%=I18n.localize(l.start_date)%> Término: <%=I18n.localize(l.limit_date)%>
     <%end%>
 <%end%>
 
 <h1>Lotes futuros</h1>
 <%@lots.each do |l|%>
-    <%if l.start_date > Date.today%>
-       Code: <%=link_to l.code, lot_path(l) %> Inicio: <%=I18n.localize(l.start_date)%>
+    <%if l.start_date > Date.today  %>
+       Code: <%=link_to l.code, lot_path(l) %> Inicio: <%=I18n.localize(l.start_date)%> Término: <%=I18n.localize(l.limit_date)%>
     <%end%>
 <%end%>
 

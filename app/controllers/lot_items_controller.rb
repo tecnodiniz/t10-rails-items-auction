@@ -47,14 +47,15 @@ class LotItemsController < ApplicationController
         lot =  Lot.find(lot_item.lot_id)
      
         if lot.aproved == "aprovado"
-            redirect_to view_items_path, notice: "Não é possível remover itens"
+            redirect_to view_items_path(lot.id), notice: "Não é possível remover itens"
         else
+            item = Item.find(lot_item.item_id)
             lot_item.destroy
 
-            item = Item.find(lot_item.item_id)
+           
             item.update(selected: false)
 
-            redirect_to view_items_path, notice: "Item removido"
+            redirect_to view_items_path(lot.id), notice: "Item removido"
     
         end
 
