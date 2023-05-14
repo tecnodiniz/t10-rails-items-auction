@@ -7,6 +7,10 @@ class ItemsController < ApplicationController
     def new 
         @item = Item.new
     end
+
+    def show 
+        @item = Item.find(params[:id])
+    end
     
     def create 
         @item = Item.new(params.require(:item).permit(:name,:url_img,:weight,:height,:width,:depth,:category_id))

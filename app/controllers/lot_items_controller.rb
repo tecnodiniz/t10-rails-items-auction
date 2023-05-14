@@ -9,7 +9,7 @@ class LotItemsController < ApplicationController
         if @lot.aproved == "aprovado"
     
             log =  Aproved.find_by(lot_id: params[:id])
-            @user = User.find(log.user_id)
+            @user = log.user
         end
 
     end
@@ -18,10 +18,10 @@ class LotItemsController < ApplicationController
         
         @lot_item = LotItem.new(params.require(:lot_item).permit(:lot_id, :item_id))
 
-        if @lot_item.item_id
-            @item = Item.find(@lot_item.item_id)
+        if @lot_item.item
+            @item = @lot_item.item
         end
-            @lot = Lot.find(@lot_item.lot_id)
+            @lot = @lot_item.lot
         
         if @lot_item.save 
            
@@ -44,12 +44,12 @@ class LotItemsController < ApplicationController
 
     def destroy
         lot_item = LotItem.find(params[:id])
-        lot =  Lot.find(lot_item.lot_id)
+        lot =  lot_item.lot
      
         if lot.aproved == "aprovado"
             redirect_to view_items_path(lot.id), notice: "Não é possível remover itens"
         else
-            item = Item.find(lot_item.item_id)
+            item = lot_item.item
             lot_item.destroy
 
            

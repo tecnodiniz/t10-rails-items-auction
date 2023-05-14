@@ -3,7 +3,7 @@ class BidsController < ApplicationController
     def create 
 
         @bid = Bid.new(params.require(:bid).permit(:lot_id, :value).merge(user_id: current_user.id))
-        lot = Lot.find(@bid.lot_id)
+        lot = @bid.lot
         dif = lot.min_value
 
         if Bid.all.any?

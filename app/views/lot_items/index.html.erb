@@ -10,7 +10,7 @@
     </tr>
     <% @items.each do |i|%>
             <tr>
-                <td> <%= Item.find(i.item_id).name %> </td>
+                <td> <%= i.item.name %> </td>
                 <td> <%= button_to "Remover", lot_item_path(i.id), id:i.id, method: :delete %> </td>
             </tr>
     <% end%>
