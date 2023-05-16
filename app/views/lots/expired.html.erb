@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <th>Lote</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>Ação</th>
+    </tr>
+    <% @lots.each do |l|%>
+        <%if l.aproved == 'aprovado' && l.limit_date < Date.today%>
+            <tr>
+                <td> <%= l.code %> </td>
+                <td> <%= I18n.localize(l.limit_date) %> </td>
+                 <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto"  %> </td>
+                <td> <%= button_to "Finalizar", validate_auction_path(l), id:l.id, method: :post%> </td>
+                
+            </tr>
+        <%end%>
+    <% end%>
+</table>

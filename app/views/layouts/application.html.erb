@@ -14,10 +14,12 @@
       <ul>
        <li> <%= link_to "Home", root_path %></li>
        <li> <%= link_to "Itens", items_path %></li>
-       <li> <%= link_to "Lotes para leilão", lots_path %></li>
+        <li> <%= link_to "Lotes para leilão", lots_path %></li>
+     
         <% if user_session%>
             <%if current_user.admin?%>
              <li> <%= link_to "Gerenciar usuários", users_path%></li>
+             
             <%end%>
         <%end%>
         </ul>

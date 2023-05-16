@@ -19,7 +19,7 @@ describe 'Usuário acessa a página de lotes' do
         expect(page).to have_content 'GAD459232'
         expect(page).to have_content '04/04/2022'
         expect(page).to have_content 'R$2000.0'
-        expect(page).not_to have_content 'GAD-459812'
+        expect(page).not_to have_content 'GAD459812'
         
     end
 

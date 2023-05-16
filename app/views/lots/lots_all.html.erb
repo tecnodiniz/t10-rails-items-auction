@@ -5,12 +5,19 @@
         <th>Código</th>
         <th>Status</th>
         <th>Usuário</th>
+        <th>Inicio</th>
+        <th>Término</th>
+        <th>Status</th>
     </tr>
     <% @lots.each do |l|%>
         <tr>
             <td> <%= link_to l.code, view_items_path(l)%> </td>
             <td> <%= l.aproved%> </td>
             <td> <%= l.user.email%> </td>
+            <td>  <%= I18n.localize(l.start_date)%> </td>
+            <td> <%= I18n.localize(l.limit_date)%> </td>
+            <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto"  %> </td>
+
             <td><%= link_to "Adicionar item", add_item_path(l) %></td> 
             <td> <%= button_to "Aprovar lote", aprove_path(l), id:l.id, method: :put%> </td>
         </tr>

@@ -19,12 +19,14 @@ Rails.application.routes.draw do
   get 'new_admin' => 'users#new_admin'
 
   get 'lots_all' => 'lots#lots_all'
+  get 'expireds' => 'lots#expired'
   get '/add_item/:id', to: 'lot_items#add_item', as: 'add_item'
   post 'add_item_lot' => 'lot_items#create'
 
   get 'view_items/:id' => 'lot_items#index', as: 'view_items'
   
   put 'aprove/:id' => 'lots#aprove', as: 'aprove'
+  post 'validate/:id' => 'lots#validate', as: 'validate_auction'
 
   get 'bid/:id' => 'lots#bid', as: 'make_bid'
 

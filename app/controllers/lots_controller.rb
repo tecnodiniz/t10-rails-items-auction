@@ -1,9 +1,10 @@
 class LotsController < ApplicationController
-    before_action :authenticate_user!, only: [:lots_all, :new, :create, :bid, :aprove]
+    before_action :authenticate_user!, only: [:lots_all, :new, :create, :bid, :aprove, :index]
 
     def index 
-        @lots = Lot.all
+            @lots = Lot.all
     end
+    
     def new 
         @lot = Lot.new
     end
@@ -11,14 +12,20 @@ class LotsController < ApplicationController
     def create 
         @lot = Lot.new(params.require(:lot).permit(:code,:start_date, :limit_date, :min_value, :dif_value).merge(
             user_id: current_user.id))
-
-        if @lot.save 
-            redirect_to lots_all_path, notice: 'Lote criado com sucesso'
-        else
-       
-            render 'new'
-        end
         
+        if @lot.start_date > @lot.limit_date
+            flash[:notice] = 'Data limit é menor que a data de inicio'
+            render 'new'
+        else
+            if @lot.save 
+                redirect_to lots_all_path, notice: 'Lote criado com sucesso'
+            else
+           
+                render 'new'
+            end
+
+        end
+
     end
     def show 
         
@@ -36,6 +43,15 @@ class LotsController < ApplicationController
     end
 
     def lots_all 
+        if current_user.admin
+            @lots = Lot.all
+        else
+            redirect_to new_user_session_path
+        end
+    
+    end
+
+    def expired 
         @lots = Lot.all
     end
 
@@ -43,17 +59,54 @@ class LotsController < ApplicationController
 
         @lot = Lot.find(params[:id])
 
-        if current_user.id == @lot.user_id
-            redirect_to lots_all_path, notice: 'Você não pode aprovar seu próprio lote'
+        if !Aproved.where(lot_id: @lot.id).any?
+            if current_user.id == @lot.user_id
+                redirect_to lots_all_path, notice: 'Você não pode aprovar seu próprio lote'
+            else
+                Aproved.create!(user_id: current_user.id, lot_id: @lot.id, date_aproved: Date.today)
+
+                @lot.update(aproved: true)
+            
+                redirect_to lots_all_path, notice: 'Lote aprovado'
+            end 
         else
-            Aproved.create!(user_id: current_user.id, lot_id: @lot.id, date_aproved: Date.today)
+            redirect_to lots_all_path, notice: 'Este lote já está aprovado'
 
-            @lot.update(aproved: true)
+        end
+
+    end
+
+    def validate 
         
-            redirect_to lots_all_path, notice: 'Lote aprovado'
-        end 
+        if !Finalized.where(params[:id]).any?
 
+            lot = Lot.find(params[:id])
+            winner =  Bid.where(lot_id: lot.id).last
 
+            if winner 
+                Finalized.create!(lot_id: winner.lot_id)
+                Winner.create!(lot_id: winner.lot_id, user_id:winner.user_id)
+
+                LotItem.where(lot_id: winner.lot_id).each do |i|
+                    Sold.create!(item_id: i.id)
+                end
+
+                redirect_to expireds_path, notice: "O vencedor foi calculado: #{winner.user.email}."
+            else
+                Finalized.create!(lot_id: lot.id)
+
+                LotItem.where(lot_id: lot.id).each do |i|
+                    Item.find(i.item_id).update(selected: false)
+                    i.destroy
+                end
+                redirect_to expireds_path, notice: "O lote foi finalizado"
+
+            end
+        else
+            redirect_to expireds_path, notice: "Este lote já foi finalizado"
+
+        end
+    
     end
 
     def bid 
