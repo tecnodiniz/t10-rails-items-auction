@@ -39,6 +39,11 @@ class UsersController < ApplicationController
             render 'new_admin'
         end
     end
+    
+    def user_win 
+        @lots =  Winner.where(user_id: params[:id])
+        
+    end
 
     private 
     def email_domain_allowed?(email)

@@ -4,6 +4,9 @@
    <p>Seu lance: <%= @bid.value %></p>
 <%end%>
 
+<%if Winner.where(lot_id: @lot.id).any?%>
+   <p>Vencedor do leilão: <%= Winner.find_by(lot_id: @lot.id).user.email%></p>
+<%end%>
 
 
 Inicio: <%= I18n.localize(@lot.start_date) %> </br >

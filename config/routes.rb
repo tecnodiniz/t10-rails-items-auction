@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
   get 'bid/:id' => 'lots#bid', as: 'make_bid'
 
+  get 'user_auctions/:id' => 'users#user_win', as: 'user_win'
+
 end

@@ -1,5 +1,11 @@
 <h1>Página Principal</h1>
+
 <%= I18n.localize(Date.today)%>
+<%if user_session%>
+    <%if Winner.where(user_id: current_user.id).any?%>
+        <%= link_to "Você venceu um leilão!", user_win_path(current_user) %>
+    <%end%>
+<%end%>
 
 <h1>Lotes em andamento</h1>
 <%@lots.each do |l|%>

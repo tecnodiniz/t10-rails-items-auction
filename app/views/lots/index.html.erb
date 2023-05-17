@@ -15,7 +15,7 @@
     <% @lots.each do |l|%>
         <%if l.aproved == 'aprovado'%>
             <tr>
-                <td> <%= l.code %> </td>
+                <td> <%= link_to l.code, lot_path(l) %> </td>
                 <td> <%= I18n.localize(l.start_date) %> </td>
                 <td> <%= I18n.localize(l.limit_date) %> </td>
                 <td> R$<%= l.min_value %> </td>

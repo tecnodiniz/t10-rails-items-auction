@@ -56,6 +56,6 @@ LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
 Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
 
-Bid.create!(lot_id:lot.id, user_id:regular_user.id, value: 10000)
-Bid.create!(lot_id:lot.id, user_id:user.id, value: 12000)
-Bid.create!(lot_id:lot.id, user_id:user_2.id, value: 13000)
+Bid.create!(lot_id:lot.id, user_id: user_2.id, value: 10000)
+Bid.create!(lot_id:lot.id, user_id: user.id, value: 12000)
+Bid.create!(lot_id:lot.id, user_id: regular_user.id, value: 13000)
