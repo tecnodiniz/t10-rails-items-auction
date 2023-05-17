@@ -1,0 +1,16 @@
+<h1>Vencedores</h1>
+<table>
+    <tr>
+        <th>Lote</th>
+        <th>Vencedor</th>
+ 
+    </tr>
+    <% @winners.each do |w|%>
+
+        <tr>
+            <td> <%= w.lot.code %> </td>
+            <td> <%= w.user.email %> </td>
+        </tr>
+
+    <% end%>
+</table>

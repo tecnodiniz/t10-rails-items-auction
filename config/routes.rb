@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :lots, only: [:new, :create,:index, :show]
   resources :lot_items, only: [:create,:index, :destroy]
   resources :bids, only: [:create]
+  resources :winners, only: [:index]
 
 
   post 'create_user' => 'users#create'
