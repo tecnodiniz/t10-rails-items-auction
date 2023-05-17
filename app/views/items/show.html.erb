@@ -1,6 +1,13 @@
-Produto: <%= @item.name%>
-Peso: <%= @item.weight%>g
-Altura: <%= @item.height%>cm
-Largura: <%= @item.width%>cm
-Profundidade: <%= @item.depth%>cm
-Categoria: <%= @item.category.description%>
+<div class = "row">
+    <div class = "content">
+        <h1>Produto: <%= @item.name%> </h1>
+
+    </div>
+    <div class = "content">
+        Peso: <%= @item.weight%>g </br >
+        Altura: <%= @item.height%>cm </br >
+        Largura: <%= @item.width%>cm </br >
+        Profundidade: <%= @item.depth%>cm </br >
+        Categoria: <%= @item.category.description%> </br >
+    </div>
+</div>

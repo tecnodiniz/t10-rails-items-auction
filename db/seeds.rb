@@ -14,10 +14,10 @@ c = Category.create!(description: 'Eletro Doméstico')
 c_2 = Category.create!(description: 'Informática')
 
 item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20,code:'ABXPA0-EJN22-IEDCVHX', category:c)
+                depth:20,code:'ABXPA0-EJN22-IEDCVHX', selected:true, category:c)
                 
 item_2 = Item.create!(name:'Mouse', url_img:'',weight:200,height:10,width:10, 
-    depth:20, category:c_2)
+    depth:20, selected:true, category:c_2)
 
                     
 Item.create!(name:'Teclado', url_img:'',weight:200,height:10,width:10, 
@@ -42,19 +42,22 @@ Item.create!(name:'Cadeira Gamer', url_img:'',weight:200,height:10,width:10,
 lot = Lot.create!(code: 'GAD459812', start_date:'11-04-2023',limit_date:'11-05-2023',min_value:1000,
     dif_value:500.00, aproved:true, user:user)
 
-Lot.create!(code: 'BAT128290', start_date:'10-05-2022',limit_date:'11-06-2022',min_value:1000,
+Lot.create!(code: 'BAT128290', start_date:Date.today,limit_date: Date.today,min_value:1000,
     dif_value:500.00, user:user)
 
-Lot.create!(code: 'CAD128290', start_date:'10-06-2023',limit_date:'11-06-2023',min_value:1000,
+Lot.create!(code: 'CAD128290', start_date:Date.today,limit_date:1.days.from_now,min_value:1000,
         dif_value:500.00, user:user)
 
-Lot.create!(code: 'CEA128290', start_date:'10-07-2023',limit_date:'13-07-2023',min_value:1000,
+Lot.create!(code: 'CEA128290', start_date:2.days.from_now,limit_date:4.days.from_now,min_value:1000,
         dif_value:500.00, user:user)
 
 LotItem.create!(lot_id: lot.id, item_id: item_1.id)
 LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
 Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
+
+Sold.create!(item_id:item_1.id)
+Sold.create!(item_id:item_2.id)
 
 Bid.create!(lot_id:lot.id, user_id: user_2.id, value: 10000)
 Bid.create!(lot_id:lot.id, user_id: user.id, value: 12000)

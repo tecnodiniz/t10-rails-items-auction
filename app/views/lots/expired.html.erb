@@ -1,19 +1,32 @@
-<table>
-    <tr>
-        <th>Lote</th>
-        <th>Data</th>
-        <th>Status</th>
-        <th>Ação</th>
-    </tr>
-    <% @lots.each do |l|%>
-        <%if l.aproved == 'aprovado' && l.limit_date < Date.today%>
-            <tr>
-                <td> <%= l.code %> </td>
-                <td> <%= I18n.localize(l.limit_date) %> </td>
-                 <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto"  %> </td>
-                <td> <%= button_to "Finalizar", validate_auction_path(l), id:l.id, method: :post%> </td>
+
+<div class = "row">
+    <div class = "content">
+        <h1>Lotes expirados</h1>
+    </div>
+    <div class = "content">
+        <table class = "table">
+        <tr>
+            <th>Lote</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+        <% @lots.each do |l|%>
+            <%if l.aproved == 'aprovado' && l.limit_date < Date.today%>
+                <tr>
+                    <td> <%= l.code %> </td>
+                    <td> <%= I18n.localize(l.limit_date) %> </td>
+                    <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto"  %> </td>
+                    <td> 
+                        <div class="table-actions">
+                            <%= button_to "Finalizar", validate_auction_path(l), id:l.id, method: :post, class: "tb-btn"%> 
+                        </div>
+                    </td>
                 
-            </tr>
-        <%end%>
-    <% end%>
-</table>
+                    
+                </tr>
+            <%end%>
+        <% end%>
+         </table>
+    </div>
+</div>

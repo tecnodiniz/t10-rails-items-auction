@@ -1,23 +1,48 @@
-<h1>Página Principal</h1>
+<div class = "container">
+    <h1>Página Principal</h1>
+    <div class ="row">
+        <div class="content">
+            <%= I18n.localize(Date.today)%>
+            <%if user_session%>
+                <%if Winner.where(user_id: current_user.id).any?%>
+                    <%= link_to "Você venceu um leilão!", user_win_path(current_user) %>
+                <%end%>
+            <%end%>
+        </div>
+    </div>
 
-<%= I18n.localize(Date.today)%>
-<%if user_session%>
-    <%if Winner.where(user_id: current_user.id).any?%>
-        <%= link_to "Você venceu um leilão!", user_win_path(current_user) %>
-    <%end%>
-<%end%>
 
-<h1>Lotes em andamento</h1>
-<%@lots.each do |l|%>
-    <%if l.start_date <= Date.today && !Finalized.where(lot_id: l.id).any?  %>
-       Code: <%=link_to l.code, lot_path(l)%> Inicio: <%=I18n.localize(l.start_date)%> Término: <%=I18n.localize(l.limit_date)%>
-    <%end%>
-<%end%>
+    <div class = "row">
+        <div class = "content">
+            <h1>Lotes em andamento</h1>
+                <%@lots.each do |l|%>
+                    <%if l.start_date <= Date.today && !Finalized.where(lot_id: l.id).any?  %>
+                    <div style = "width:100%; margin-bottom:1rem">
+                        Code: <%=link_to l.code, lot_path(l)%> Inicio: <%=I18n.localize(l.start_date)%> Término: <%=I18n.localize(l.limit_date)%>
+                    </div>
+                    <%end%>
+                <%end%>
 
-<h1>Lotes futuros</h1>
-<%@lots.each do |l|%>
-    <%if l.start_date > Date.today  %>
-       Code: <%=link_to l.code, lot_path(l) %> Inicio: <%=I18n.localize(l.start_date)%> Término: <%=I18n.localize(l.limit_date)%>
-    <%end%>
-<%end%>
+                    <%if !@lots.any?%>
+                        <p>Não há lotes em andamento</p>
+                    <%end%>
+        </div>
+        
+        <div class = "content">
+            <h1>Lotes futuros</h1>
+            <%@lots.each do |l|%>
+                <%if l.start_date > Date.today  %>
+                    <div style = "width:100%; margin-bottom:1rem">
+                        Code: <%=link_to l.code, lot_path(l) %> Inicio: <%=I18n.localize(l.start_date)%> Término: <%=I18n.localize(l.limit_date)%>
+                    </div>
+                <%end%>
+            <%end%>
+            <%%>
+        </div>
 
+    </div>
+
+ 
+
+
+</div>

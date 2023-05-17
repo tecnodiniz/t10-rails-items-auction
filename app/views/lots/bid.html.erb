@@ -1,6 +1,6 @@
 
-<%if Bid.all.any?%>
-Lance atual: <%= Bid.last.value%>
+<%if Bid.where(lot_id:@lot.id).any?%>
+    Lance atual: <%= Bid.where(lot_id: @lot.id).last.value%>
 <%end%>
 
 <%= form_with model: @bid do |f|%>

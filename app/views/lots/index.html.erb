@@ -1,28 +1,39 @@
-<% if user_session%>
-    <% if current_user.admin%>
-        <%= link_to "Visualizar todos os lotes", lots_all_path %>
-        <%= link_to "Visualizar lotes expirados", expireds_path %>
-    <% end %>
-    <%= link_to "Lotes vencidos", winners_path %>
-<% end %>
-<table>
-    <tr>
-        <th>Código</th>
-        <th>Inicio</th>
-        <th>Término</th>
-        <th>Valor</th>
-        <th>Status</th>
-    </tr>
-    <% @lots.each do |l|%>
-        <%if l.aproved == 'aprovado'%>
-            <tr>
-                <td> <%= link_to l.code, lot_path(l) %> </td>
-                <td> <%= I18n.localize(l.start_date) %> </td>
-                <td> <%= I18n.localize(l.limit_date) %> </td>
-                <td> R$<%= l.min_value %> </td>
-                <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto" %> </td>
+
+<div class = "row">    
+    <div class = "content">
+        <ul class = "menu">
+            
+       
+        <% if user_session%>
+            <% if current_user.admin%>
+            <li><%= link_to "Visualizar todos os lotes", lots_all_path %></li>
+            <li><%= link_to "Visualizar lotes expirados", expireds_path %></li>
                 
-            </tr>
-        <%end%>
-    <% end%>
-</table>
+            <% end %>
+            <li><%= link_to "Lotes vencidos", winners_path %></li>
+        <% end %>
+        <ul>
+    </div>
+</div>
+
+    <table class = "table">
+        <tr>
+            <th>Código</th>
+            <th>Inicio</th>
+            <th>Término</th>
+            <th>Valor</th>
+            <th>Status</th>
+        </tr>
+        <% @lots.each do |l|%>
+            <%if l.aproved == 'aprovado'%>
+                <tr>
+                    <td> <%= link_to l.code, lot_path(l) %> </td>
+                    <td> <%= I18n.localize(l.start_date) %> </td>
+                    <td> <%= I18n.localize(l.limit_date) %> </td>
+                    <td> R$<%= l.min_value %> </td>
+                    <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto" %> </td>
+                    
+                </tr>
+            <%end%>
+        <% end%>
+    </table>

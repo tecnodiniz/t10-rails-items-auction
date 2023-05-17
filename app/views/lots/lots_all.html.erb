@@ -1,25 +1,38 @@
-<%= link_to "Novo lote", new_lot_path %>
 
-<table>
-    <tr>
-        <th>Código</th>
-        <th>Status</th>
-        <th>Usuário</th>
-        <th>Inicio</th>
-        <th>Término</th>
-        <th>Status</th>
-    </tr>
-    <% @lots.each do |l|%>
-        <tr>
-            <td> <%= link_to l.code, view_items_path(l)%> </td>
-            <td> <%= l.aproved%> </td>
-            <td> <%= l.user.email%> </td>
-            <td>  <%= I18n.localize(l.start_date)%> </td>
-            <td> <%= I18n.localize(l.limit_date)%> </td>
-            <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto"  %> </td>
+<div class ="row">
+    <div class = "content">
+        <%= link_to "Novo lote", new_lot_path %>
+    </div>
+    <div class = "content">
+        <table class ="table">
+            <tr>
+                <th>Código</th>
+                <th>Status</th>
+                <th>Usuário</th>
+                <th>Inicio</th>
+                <th>Término</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            <% @lots.each do |l|%>
+                <tr>
+                    <td> <%= link_to l.code, view_items_path(l)%> </td>
+                    <td> <%= l.aproved%> </td>
+                    <td> <%= l.user.email%> </td>
+                    <td>  <%= I18n.localize(l.start_date)%> </td>
+                    <td> <%= I18n.localize(l.limit_date)%> </td>
+                    <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto"  %> </td>
 
-            <td><%= link_to "Adicionar item", add_item_path(l) %></td> 
-            <td> <%= button_to "Aprovar lote", aprove_path(l), id:l.id, method: :put%> </td>
-        </tr>
-    <% end%>
-</table>
+                    <td>
+                        <div class = "table-actions">
+                            <div><%= link_to "Adicionar item", add_item_path(l), class: "tb-btn" %></div> 
+                            <div><%= button_to "Aprovar lote", aprove_path(l), id:l.id, method: :put, class: "tb-btn"%></div>
+                        </div>
+                     </td> 
+                 
+                </tr>
+            <% end%>
+        </table>
+    </div>
+</div>
+   

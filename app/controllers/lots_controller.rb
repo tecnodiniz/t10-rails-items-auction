@@ -78,8 +78,7 @@ class LotsController < ApplicationController
 
     def validate 
         
-        if !Finalized.where(params[:id]).any?
-
+        if !Finalized.where(lot_id: params[:id]).any?
             lot = Lot.find(params[:id])
             winner =  Bid.where(lot_id: lot.id).last
 
