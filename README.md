@@ -17,6 +17,7 @@ Lotes para leilão > Lotes expirados > finalizar
 
 O resultado será calculado.
 
+Neste exemplo, o usuário eduardo@gmail.com será o vencedor do leilão. Logue com essa conta para receber a notificação.
 
 # Contas para acessar o sistema
 
@@ -29,9 +30,12 @@ eduardo@gmail.com - banana123
 
 
 # Observações
+
 As datas do lote são do time Date, então por enquanto não será possível calcular através de horas e minutos.
 
-Fiz o mais básico possível.
+Fiz o mais básico possível por falta de tempo. Mas temos um leilão funcionando hahaha.
+
+
 
 
 
