@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-    before_action :authenticate_user!, only: [:lots_all, :new, :create, :bid, :aprove, :index]
+    before_action :authenticate_user!, only: [:lots_all, :new, :create, :bid, :aprove, :index, :favorited]
 
     def index 
             @lots = Lot.all
@@ -119,6 +119,11 @@ class LotsController < ApplicationController
         else
             @bid = Bid.new
         end
+    end
+
+    def favorited
+        Favorite.create!(lot_id: params[:id], user_id: current_user.id)
+        redirect_to lot_path(params[:id]), notice: 'Lote favoritado'
     end
 
 end

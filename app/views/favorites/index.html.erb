@@ -1,0 +1,17 @@
+
+<div class = "row">
+    <div class = "content">
+        <table class = "table">
+             <tr>
+                <th>Lot</th>
+                <th>Status</th>
+            </tr>
+                <% @lot.each do |l|%>
+                    <tr>
+                        <td> <%= l.lot.code%> </td>
+                        <td> <%= l.lot.limit_date < Date.today ? 'Ativo' : 'Vencido'%> </td>
+                    </tr>
+                <% end%>
+        </table>
+    </div>
+</div>

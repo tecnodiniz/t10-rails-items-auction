@@ -3,7 +3,9 @@
 <div class = "row">
    <div class= "content">
       <h1>Lote <%= @lot.code%></h1>
+      
    </div>
+   <p><%= button_to "Favoritar lote", add_favorite_path(@lot.id), method: :post %></p>
 
    <div class = "content">
      

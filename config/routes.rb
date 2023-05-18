@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :lot_items, only: [:create,:index, :destroy]
   resources :bids, only: [:create]
   resources :winners, only: [:index]
+  resources :favorites, only: [:index]
 
 
   post 'create_user' => 'users#create'
@@ -22,15 +23,21 @@ Rails.application.routes.draw do
   get 'lots_all' => 'lots#lots_all'
   get 'expireds' => 'lots#expired'
   get '/add_item/:id', to: 'lot_items#add_item', as: 'add_item'
+
   post 'add_item_lot' => 'lot_items#create'
 
   get 'view_items/:id' => 'lot_items#index', as: 'view_items'
   
   put 'aprove/:id' => 'lots#aprove', as: 'aprove'
+
   post 'validate/:id' => 'lots#validate', as: 'validate_auction'
+
+  post 'favorited/:id' => 'lots#favorited', as: 'add_favorite'
 
   get 'bid/:id' => 'lots#bid', as: 'make_bid'
 
   get 'user_auctions/:id' => 'users#user_win', as: 'user_win'
+
+
 
 end

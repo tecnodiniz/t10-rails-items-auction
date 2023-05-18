@@ -20,6 +20,10 @@
        <li> <%= link_to "Home", root_path %></li>
        <li> <%= link_to "Itens", items_path %></li>
         <li> <%= link_to "Lotes para leilão", lots_path %></li>
+        <% if user_signed_in?%>
+          <li> <%= link_to "Lotes favoritos", favorites_path %></li>
+
+        <%end%>
      
         <% if user_session%>
             <%if current_user.admin?%>
