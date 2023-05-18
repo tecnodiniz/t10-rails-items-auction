@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-user_2 = User.create!(email:'eduardo@leilaodogalpao.com.br', password: '@@l0ck3d0u7@@',cpf:'61882855345',admin:true)
-regular_user = User.create!(email:'eduardo@gmail.com', password: '@@l0ck3d0u7@@',cpf:'83733911261',admin:false)
+user = User.create!(email:'diniz@leilaodogalpao.com.br', password: 'banana123',cpf:'44047449865',admin:true)
+user_2 = User.create!(email:'eduardo@leilaodogalpao.com.br', password: 'banana123',cpf:'61882855345',admin:true)
+regular_user = User.create!(email:'eduardo@gmail.com', password: 'banana123',cpf:'83733911261',admin:false)
 
 c = Category.create!(description: 'Eletro Doméstico')
 c_2 = Category.create!(description: 'Informática')

@@ -13,20 +13,14 @@ class LotsController < ApplicationController
         @lot = Lot.new(params.require(:lot).permit(:code,:start_date, :limit_date, :min_value, :dif_value).merge(
             user_id: current_user.id))
         
-        if @lot.start_date > @lot.limit_date
-            flash[:notice] = 'Data limit é menor que a data de inicio'
-            render 'new'
+        if @lot.save 
+            redirect_to lots_all_path, notice: 'Lote criado com sucesso'
         else
-            if @lot.save 
-                redirect_to lots_all_path, notice: 'Lote criado com sucesso'
-            else
-           
-                render 'new'
-            end
-
+            render 'new'
         end
 
     end
+
     def show 
         
         @lot = Lot.find(params[:id])
@@ -122,8 +116,14 @@ class LotsController < ApplicationController
     end
 
     def favorited
-        Favorite.create!(lot_id: params[:id], user_id: current_user.id)
-        redirect_to lot_path(params[:id]), notice: 'Lote favoritado'
+        
+        if !Favorite.where(lot_id: params[:id], user_id: current_user.id).any?
+            Favorite.create!(lot_id: params[:id], user_id: current_user.id)
+            redirect_to lot_path(params[:id]), notice: 'Lote favoritado'
+        else
+            redirect_to lot_path(params[:id]), notice: 'Lote já favoritado'
+
+        end
     end
 
 end

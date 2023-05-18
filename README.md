@@ -1,24 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Leilão de Lotes
 
-Things you may want to cover:
+Sistema criado a fim de ilustrar de maneira simples e básica um leilão de lotes de itens.
 
-* Ruby version
 
-* System dependencies
+# Gems usadas
+gem "cpf_cnpj"
 
-* Configuration
+# Como usar o sistema
+Ao executar o rails s, um seed contendo algumas informações pré cadastradas será executado. Neste seed existirá um lote cujo a validade se encontra expirada, ou seja, não será possível realizar lances. Esse lote terá 3 lances, então siga esses passos:
 
-* Database creation
+Acesse como administrador, na página principal:
 
-* Database initialization
+Lotes para leilão > Lotes expirados > finalizar
 
-* How to run the test suite
+O resultado será calculado.
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+# Contas para acessar o sistema
 
-* ...
+admins: 
+diniz@leilaodogalpao.com.br - senha: banana123
+eduardo@leilaodogalpao.com.br - banana123
+
+Usuário comum
+eduardo@gmail.com - banana123
+
+
+# Observações
+As datas do lote são do time Date, então por enquanto não será possível calcular através de horas e minutos.
+
+Fiz o mais básico possível.
+
+
+
+
+
+
