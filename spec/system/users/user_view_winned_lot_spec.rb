@@ -1,93 +1,93 @@
 require 'rails_helper'
 
 describe 'usuário acessa página principal' do
-    it 'e vê notificação de leilão' do 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+  it 'e vê notificação de leilão' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-05-2023',limit_date:'12-05-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        Lot.create!(code: 'GAD459830', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-05-2023', limit_date: '12-05-2023', min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    Lot.create!(code: 'GAD459830', start_date: '04-04-2022', limit_date: '04-05-2022', min_value: 1000.00,
+                dif_value: 500.00, aproved: true, user:)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-       
-        Bid.create(lot_id:lot.id, user_id:user.id, value: 12000)
-        Bid.create(lot_id:lot.id, user_id:user_2.id, value: 13000)
-        Bid.create(lot_id:lot.id, user_id:regular_user.id, value: 15000)
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: Date.today)
 
-        winner = Bid.where(lot_id:lot.id).last
+    Bid.create(lot_id: lot.id, user_id: user.id, value: 12_000)
+    Bid.create(lot_id: lot.id, user_id: user_2.id, value: 13_000)
+    Bid.create(lot_id: lot.id, user_id: regular_user.id, value: 15_000)
 
-        Finalized.create!(lot_id: lot.id)
-        Winner.create!(lot_id: lot.id, user_id:winner.user_id)
+    winner = Bid.where(lot_id: lot.id).last
 
-        login_as(regular_user)
+    Finalized.create!(lot_id: lot.id)
+    Winner.create!(lot_id: lot.id, user_id: winner.user_id)
 
-        visit root_path
+    login_as(regular_user)
 
-        expect(page).to have_content 'Você venceu um leilão!'
-    
-    end
+    visit root_path
 
-    it 'e vê todos os leilões em que ele venceu' do 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    expect(page).to have_content 'Você venceu um leilão!'
+  end
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+  it 'e vê todos os leilões em que ele venceu' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-05-2023',limit_date:'12-05-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        Lot.create!(code: 'GAD459830', start_date:'04-04-2022',limit_date:'04-05-2022',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-05-2023', limit_date: '12-05-2023', min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
+    Lot.create!(code: 'GAD459830', start_date: '04-04-2022', limit_date: '04-05-2022', min_value: 1000.00,
+                dif_value: 500.00, aproved: true, user:)
 
-       
-        Bid.create(lot_id:lot.id, user_id:user.id, value: 12000)
-        Bid.create(lot_id:lot.id, user_id:user_2.id, value: 13000)
-        Bid.create(lot_id:lot.id, user_id:regular_user.id, value: 15000)
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        winner = Bid.where(lot_id:lot.id).last
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: Date.today)
 
-        Finalized.create!(lot_id: lot.id)
-        Winner.create!(lot_id: lot.id, user_id:winner.user_id)
+    Bid.create(lot_id: lot.id, user_id: user.id, value: 12_000)
+    Bid.create(lot_id: lot.id, user_id: user_2.id, value: 13_000)
+    Bid.create(lot_id: lot.id, user_id: regular_user.id, value: 15_000)
 
-        login_as(regular_user)
+    winner = Bid.where(lot_id: lot.id).last
 
-        visit root_path
-        click_on 'Você venceu um leilão!'
+    Finalized.create!(lot_id: lot.id)
+    Winner.create!(lot_id: lot.id, user_id: winner.user_id)
 
-        expect(page).to have_content 'Você venceu: '
-        expect(page).to have_content 'GAD459812'
-    
-    end
+    login_as(regular_user)
+
+    visit root_path
+    click_on 'Você venceu um leilão!'
+
+    expect(page).to have_content 'Você venceu: '
+    expect(page).to have_content 'GAD459812'
+  end
 end

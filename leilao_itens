@@ -1,0 +1,54 @@
+Leilão de itens
+
+Administradores
+	Cadastrar produto
+	Cadastrar lote
+	Aprovar lote
+	Bloquear usuario
+	Visualizar lotes encerrados
+	Calcular vencedor
+
+Usuário regular
+	Criar uma conta
+	Buscar produto
+	Ver detalhes do produto
+	Dar lance
+	Favoritar lotes
+	
+Vsitante 
+	Visitar página
+	Visualizar lotes
+	Visualizar lotes vencedores
+	
+Backlog
+	Usuário autenticado deve fazer uma lance
+	
+	Usuário autenticado deve favoritar um lote
+	
+	Usuário autenticado deve visualizar lote vencedor
+	
+	Visitante deve ser capaz de visualizar a página inicial e ver lotes em andamento e lotes futuros
+	
+	Visitante deve realizar um cadastro na aplicação para realizar lances 
+	
+	Visitante deve ser capaz de visualizar os produtos cadastrados
+	
+	Usuário e visitante devem ser capazes de pesquisar um produto
+	
+	Usuário deve ser capaz de tirar dúvidas sobre um lote
+	Administrador deve responser as dúvidas do usuário referente a um lote
+	
+	Administrador deve ser capaz de bloquear um cpf para que ele não possa realizar cadastro na aplicação
+	
+	
+	
+	
+
+
+
+
+
+		
+		
+
+

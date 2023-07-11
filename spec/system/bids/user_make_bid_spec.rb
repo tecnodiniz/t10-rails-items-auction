@@ -1,222 +1,225 @@
 require 'rails_helper'
 
 describe 'Usuário faz um lance' do
-    it 'com sucesso' do
+  it 'com sucesso' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-05-2023',limit_date:'11-06-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-05-2023', limit_date: Time.zone.today, min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
-        
-        login_as(regular_user)
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: Time.zone.today)
 
-        visit root_path
+    login_as(regular_user)
 
-        click_on 'GAD459812'
-        click_on 'Dar lance'
+    visit root_path
 
-        fill_in 'Lance', with: 1500
-        click_on 'Enviar' 
+    click_on 'GAD459812'
+    click_on 'Dar lance'
 
-        expect(page).to have_content 'Lance efetuado com sucesso'
+    fill_in 'Lance', with: 1500
+    click_on 'Enviar'
 
-    end
-    it 'e vê lance efetuado nos detalhes do lote' do 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    expect(page).to have_content 'Lance efetuado com sucesso'
+  end
+  it 'e vê lance efetuado nos detalhes do lote' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-05-2023',limit_date:'11-06-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-05-2023', limit_date: Time.zone.today, min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
-        
-        login_as(regular_user)
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        visit root_path
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: Time.zone.today)
 
-        click_on 'GAD459812'
-        click_on 'Dar lance'
+    login_as(regular_user)
 
-        fill_in 'Lance', with: 1500
-        click_on 'Enviar' 
+    visit root_path
 
-        expect(page).to have_content 'Seu lance: 1500'
+    click_on 'GAD459812'
+    click_on 'Dar lance'
 
-    end
+    fill_in 'Lance', with: 1500
+    click_on 'Enviar'
 
-    it 'e falha a dar lance menor que o valor mínimo' do
-        
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    expect(page).to have_content 'Seu lance: 1500'
+  end
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+  it 'e falha a dar lance menor que o valor mínimo' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-05-2023',limit_date:'11-06-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
-        
-        login_as(regular_user)
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-05-2023', limit_date: Time.zone.today, min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        visit root_path
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        click_on 'GAD459812'
-        click_on 'Dar lance'
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: Time.zone.today)
 
-        fill_in 'Lance', with: 900
-        click_on 'Enviar' 
+    login_as(regular_user)
 
-        expect(page).to have_content 'O lance deve ser maior ou igual ao valor mínimo'
-    end
+    visit root_path
 
-    it 'e falha ao dar lance com lote fora da data de leilão' do 
+    click_on 'GAD459812'
+    click_on 'Dar lance'
 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    fill_in 'Lance', with: 900
+    click_on 'Enviar'
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+    expect(page).to have_content 'O lance deve ser maior ou igual ao valor mínimo'
+  end
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+  it 'e falha ao dar lance com lote fora da data de leilão' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-04-2023',limit_date:'20-04-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: '11-04-2023')
-        
-        login_as(regular_user)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        visit root_path
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-04-2023', limit_date: '20-04-2023', min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        click_on 'GAD459812'
-        click_on 'Dar lance'
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        expect(page).to have_content 'Este leilão já foi encerrado'
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: '11-04-2023')
 
-    end
+    login_as(regular_user)
 
-    it 'e falha ao dar lance com em lote futuro ' do 
+    visit root_path
 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    click_on 'GAD459812'
+    click_on 'Dar lance'
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+    expect(page).to have_content 'Este leilão já foi encerrado'
+  end
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+  it 'e falha ao dar lance com em lote futuro ' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        lot = Lot.create!(code: 'GAD459812', start_date: 5.days.from_now ,limit_date: 6.days.from_now ,min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: '11-04-2023')
-        
-        login_as(regular_user)
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        visit root_path
+    lot = Lot.create!(code: 'GAD459812', start_date: 5.days.from_now, limit_date: 6.days.from_now, min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        click_on 'GAD459812'
-        click_on 'Dar lance'
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        expect(page).to have_content 'Este leilão não foi iniciado'
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: '11-04-2023')
 
-    end
+    login_as(regular_user)
 
-    it 'e vê lance anterior ' do 
-        user = User.create!(email:'diniz480@gmail.com', password: '@@l0ck3d0u7@@',cpf:'44047449865',admin:true)
-        user_2 = User.create!(email:'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@',cpf:'61857677676',admin:true)
+    visit root_path
 
-        regular_user = User.create!(email:'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@',cpf:'08306516087',admin:false)
+    click_on 'GAD459812'
+    click_on 'Dar lance'
 
-        c_1 = Category.create!(description: 'Eletro Doméstico')
-        c_2 = Category.create!(description: 'Roupas')
+    expect(page).to have_content 'Este leilão não foi iniciado'
+  end
 
-        item_1 = Item.create!(name:'Televisão Samsung', url_img:'',weight:8000,height:70,width:90, 
-                depth:20, category:c_1)
-                
-        item_2 = Item.create!(name:'Som Surrond 7.2', url_img:'',weight:3000,height:70,width:30, 
-                    depth:5, category:c_1)
+  it 'e vê lance anterior ' do
+    user = User.create!(email: 'diniz480@gmail.com', password: '@@l0ck3d0u7@@', cpf: '44047449865', admin: true)
+    user_2 = User.create!(email: 'eduardo@leilãoestoque.com.br', password: '@@l0ck3d0u7@@', cpf: '61857677676',
+                          admin: true)
 
-        lot = Lot.create!(code: 'GAD459812', start_date:'11-05-2023',limit_date:'11-06-2023',min_value:1000.00,
-            dif_value:500.00,aproved:true, user:user)
+    regular_user = User.create!(email: 'eduardohdp@hotmail.com', password: '@@l0ck3d0u7@@', cpf: '08306516087',
+                                admin: false)
 
-        LotItem.create!(lot_id: lot.id, item_id: item_1.id)
-        LotItem.create!(lot_id: lot.id, item_id: item_2.id)
+    c_1 = Category.create!(description: 'Eletro Doméstico')
+    c_2 = Category.create!(description: 'Roupas')
 
-        Aproved.create!(lot_id:lot.id, user_id:user_2.id, date_aproved: Date.today)
-        Bid.create!(lot_id:lot.id, user_id:user_2.id, value: 1000)
-        
-        login_as(regular_user)
+    item_1 = Item.create!(name: 'Televisão Samsung', url_img: '', weight: 8000, height: 70, width: 90,
+                          depth: 20, category: c_1)
 
-        visit root_path
+    item_2 = Item.create!(name: 'Som Surrond 7.2', url_img: '', weight: 3000, height: 70, width: 30,
+                          depth: 5, category: c_1)
 
-        click_on 'GAD459812'
-        click_on 'Dar lance'
+    lot = Lot.create!(code: 'GAD459812', start_date: '11-05-2023', limit_date: Time.zone.today, min_value: 1000.00,
+                      dif_value: 500.00, aproved: true, user:)
 
-        fill_in 'Lance', with: 1000
-        click_on 'Enviar' 
+    LotItem.create!(lot_id: lot.id, item_id: item_1.id)
+    LotItem.create!(lot_id: lot.id, item_id: item_2.id)
 
-        expect(page).to have_content 'Lance atual: 1000'
-    end
+    Aproved.create!(lot_id: lot.id, user_id: user_2.id, date_aproved: Time.zone.today)
+    Bid.create!(lot_id: lot.id, user_id: user_2.id, value: 1000)
 
+    login_as(regular_user)
+
+    visit root_path
+
+    click_on 'GAD459812'
+    click_on 'Dar lance'
+
+    fill_in 'Lance', with: 1000
+    click_on 'Enviar'
+
+    expect(page).to have_content 'Lance atual: 1000'
+  end
 end

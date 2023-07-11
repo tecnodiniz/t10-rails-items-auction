@@ -1,4 +1,4 @@
-require "cpf_cnpj"
+require 'cpf_cnpj'
 
 class CpfValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
@@ -9,10 +9,7 @@ class CpfValidator < ActiveModel::EachValidator
       attribute,
       :invalid_cpf,
       message: options[:message] || 'is not valid',
-      value: value
+      value:
     )
   end
-
-    
 end
-  

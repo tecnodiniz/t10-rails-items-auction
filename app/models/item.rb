@@ -5,7 +5,8 @@ class Item < ApplicationRecord
   validates :code, uniqueness: true
 
   private
-  def generate_code 
-      self.code = SecureRandom.alphanumeric(20)
+
+  def generate_code
+    self.code = SecureRandom.alphanumeric(20)
   end
 end
