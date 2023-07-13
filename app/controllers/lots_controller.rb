@@ -1,5 +1,6 @@
 class LotsController < ApplicationController
-  before_action :authenticate_user!, only: %i[lots_all new create bid aprove index favorited]
+  before_action :authenticate_administrator!, only: %i[new create aprove index]
+
 
   def index
     @lots = Lot.all
@@ -11,11 +12,10 @@ class LotsController < ApplicationController
 
   def create
     @lot = Lot.new(params.require(:lot).permit(:code, :start_date, :limit_date, :min_value, :dif_value).merge(
-                     user_id: current_user.id
+                     administrator_id: current_administrator.id
                    ))
-
     if @lot.save
-      redirect_to lots_all_path, notice: 'Lote criado com sucesso'
+      redirect_to lots_path, notice: 'Lote criado com sucesso'
     else
       render 'new'
     end
@@ -23,7 +23,7 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
-    if @lot.aproved == 'aprovado'
+    if @lot.status == 'aprovado'
       @items = LotItem.where(lot_id: params[:id])
 
       @bid = Bid.where(lot_id: params[:id], user_id: current_user.id).last if user_session
@@ -114,4 +114,6 @@ class LotsController < ApplicationController
 
     end
   end
+
+  
 end

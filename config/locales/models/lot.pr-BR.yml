@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      lot:
+        one: Lote
+        other: Lotes
+    attributes:
+      lot:
+        code: Código
+        start_date: Data de início
+        limit_date: Data limite
+        min_value: Lance mínimo
+        dif_value: Diferença de lance

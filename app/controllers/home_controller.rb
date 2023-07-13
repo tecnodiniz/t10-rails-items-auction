@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @lots = Lot.where(aproved: true)
+    @lots = Lot.where(status: 'aproved')
   end
 end

@@ -2,16 +2,7 @@
 <div class = "row">    
     <div class = "content">
         <ul class = "menu">
-            
-       
-        <% if user_session%>
-            <% if current_user.admin%>
-            <li><%= link_to "Visualizar todos os lotes", lots_all_path %></li>
-            <li><%= link_to "Visualizar lotes expirados", expireds_path %></li>
-                
-            <% end %>
-            <li><%= link_to "Lotes vencidos", winners_path %></li>
-        <% end %>
+            <li><%= link_to "Cadastrar novo lote", new_lot_path %></li>
         <ul>
     </div>
 </div>
@@ -22,18 +13,18 @@
             <th>Inicio</th>
             <th>Término</th>
             <th>Valor</th>
+            <th>Diferença</th>
             <th>Status</th>
         </tr>
         <% @lots.each do |l|%>
-            <%if l.aproved == 'aprovado'%>
                 <tr>
                     <td> <%= link_to l.code, lot_path(l) %> </td>
                     <td> <%= I18n.localize(l.start_date) %> </td>
                     <td> <%= I18n.localize(l.limit_date) %> </td>
                     <td> R$<%= l.min_value %> </td>
-                    <td> <%= Finalized.where(lot_id:l.id).any? ? "Finalizado" : "Aberto" %> </td>
+                    <td> R$<%= l.dif_value %> </td>
+                    <td><%= l.status %> </td>
                     
                 </tr>
-            <%end%>
         <% end%>
     </table>

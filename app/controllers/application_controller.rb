@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
       administrator_params.permit(:email, :password, :password_confirmation, :cpf)
     end
   end
+
+  def authenticate_administrator!
+    unless current_administrator
+      flash[:alert] = 'Acesso não autorizado.'
+      redirect_to root_path
+    end
+  end
+  
 end

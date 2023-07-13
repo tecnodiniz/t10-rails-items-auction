@@ -8,21 +8,21 @@
 <%end%>
 
 <%= form_with model: @lot do |f|%>
-    <%=f.label :code, 'Código'%>
+    <%=f.label :code %>
     <%=f.text_field :code %>
 
-    <%=f.label :start_date, 'Início'%>
+    <%=f.label :start_date %>
     <%=f.date_field :start_date%>
 
-    <%=f.label :limit_date, 'Limite'%>
+    <%=f.label :limit_date  %>
     <%=f.date_field :limit_date%>
 
-    <%=f.label :min_value, 'Valor mínimo'%>
+    <%=f.label :min_value %>
     <%=f.number_field :min_value %>
 
-    <%=f.label :dif_value, 'Diferença de lance'%>
+    <%=f.label :dif_value %>
     <%=f.number_field :dif_value %>
 
-    <%=f.submit 'Criar lote'%>
+    <%=f.submit%>
 
 <%end%>

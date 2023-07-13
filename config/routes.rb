@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :bids, only: [:create]
 
     collection do
-      get :lost_al
+      get :lost_all
       get :expired
     end
     member do 
