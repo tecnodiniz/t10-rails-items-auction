@@ -28,17 +28,24 @@
                 <%= link_to "Home", root_path, class:'nav-link' %>
             </li>
              <li> 
-                <%= link_to "Itens", items_path, class: 'nav-link' %>
+                <%= link_to "Produtos", products_path, class: 'nav-link' %>
               </li>
               <li> 
-                <%= link_to "Lotes para leilão", lots_path,class:'nav-link' %> 
+              <%if administrator_signed_in?%>
+              <li> <%= link_to "Gerenciar usuários", administrators_path, class:'nav-link'%></li>
+                <%= current_administrator.email %>
+                <%= button_to "Sair", destroy_administrator_session_path, method: :delete, class: 'btn'%>
+
+              <%end%>
+                <%= link_to "Lotes para leilão", lots_path,class:'nav-ink' %> 
               </li>
               <% if user_signed_in?%>
+
                 <li> <%= link_to "Lotes favoritos", favorites_path, class:'nav-link' %></li>
                   <%if current_user.admin?%>
-                    <li> <%= link_to "Gerenciar usuários", users_path, class:'nav-link'%></li>
+                    
                   <%end%>
-                <%= button_to "Sair", destroy_user_session_path, method: :delete, class: 'btn'%>
+              
               <%else%>
                 <%= link_to "Login", new_user_session_path, class: 'nav-link' %>
               <%end%>

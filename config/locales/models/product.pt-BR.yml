@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      product:
+        one: Produto
+        other: Produtos
+    attributes:
+      product:
+        name: Nome
+        width: Largura
+        height: Altura
+        weight: Peso
+        depth: Profundidade
+        status: status
+        prod_category: Categoria
+    enum:
+      product:
+        status:
+          available: Disponível
+          selected: Selecionado
+          sold: Vendido

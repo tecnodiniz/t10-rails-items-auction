@@ -1,0 +1,5 @@
+class AddCpfToAdministrators < ActiveRecord::Migration[7.0]
+  def change
+    add_column :administrators, :cpf, :string
+  end
+end

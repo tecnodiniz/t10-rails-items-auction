@@ -1,0 +1,14 @@
+<h2>Detalhes do produto</h2>
+
+<%= image_tag @product.logo, class: 'card-img-top rounded rounded-bottom-0', alt: @product.name %>
+<h3>Dimensões</h3>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('name') %></b>: <%= @product.name %></p>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('width') %></b>: <%= @product.width %></p>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('height') %></b>: <%= @product.height %></p>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('weight') %></b>: <%= @product.weight %></p>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('depth') %></b>: <%= @product.depth %></p>
+<hr>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('prod_category') %></b>: <%= @product.prod_category.description %></p>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('status') %></b>: <%= t("activerecord.enum.product.status.#{@product.status}") %></p>
+
+<%= link_to "Editar", edit_product_path(@product) %>

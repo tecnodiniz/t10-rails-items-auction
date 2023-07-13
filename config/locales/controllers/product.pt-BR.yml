@@ -1,0 +1,7 @@
+pt-BR:
+  products:
+    create: 
+      success: Produto cadastrato com sucesso
+      failure: Não foi possível criar o produto
+    update:
+      success: Produto editado com sucesso

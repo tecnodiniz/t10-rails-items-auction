@@ -1,14 +1,14 @@
-<% if @user.errors.any?%>
+<% if @admin.errors.any?%>
   <ul>
-  <%@user.errors.full_messages.each do |msg|%>
+  <%@admin.errors.full_messages.each do |msg|%>
   <li><%=msg%></li>
   <%end%>
   </ul>
 <%end%>
 
-<h2>New User</h2>
+<h2>Novo administrador</h2>
 
-  <%= form_with model: @user, url: create_user_path do |f| %>
+  <%= form_with model:@admin, url: create_admin_administrators_path, method: :post do |f| %>
 
   <div class="field">
     <%= f.label :email %><br />

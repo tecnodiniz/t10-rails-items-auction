@@ -1,0 +1,9 @@
+<div>
+  <%if @product.errors.present?%>
+    <%@product.errors.full_messages.each do |msg|%>
+      <%= msg %>
+    <%end%>
+  <%end%>
+</div>
+
+<%= render 'form', title: 'Cadastro de produto' %>

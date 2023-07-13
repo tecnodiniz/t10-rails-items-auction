@@ -1,0 +1,5 @@
+<%= link_to "Novo administrador", new_administrator_path %>
+
+<%@admins.each do |admin|%>
+  <%= admin.email%>
+<%end%>
