@@ -14,10 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_administrator!
-    unless current_administrator
-      flash[:alert] = 'Acesso não autorizado.'
-      redirect_to root_path
-    end
+    return redirect_to root_path if !current_administrator.present?
+      
+      unless current_administrator.email.include?("@leilaodogalpao.com.br")
+        flash[:alert] = 'Acesso não autorizado.'
+        redirect_to root_path
+      end
   end
   
 end

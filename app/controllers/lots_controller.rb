@@ -1,5 +1,6 @@
 class LotsController < ApplicationController
   before_action :authenticate_administrator!, only: %i[new create aprove index]
+  before_action :check_available, only: %i[show]
 
 
   def index
@@ -124,5 +125,19 @@ class LotsController < ApplicationController
     end
   end
 
+  private
+
+  def check_available
+    
+    lot = Lot.find(params[:id])
+    if current_administrator.present?
+      return redirect_to root_path, notice: 'Acesso não autorizado' if !current_administrator.email.include?("@leilaodogalpao.com.br") && lot.awaiting?
   
+    else
+      redirect_to root_path, notice: 'Acesso não autorizado' if lot.awaiting?
+    end
+   
+   
+   
+  end
 end

@@ -9,6 +9,10 @@
 <p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('depth') %></b>: <%= @product.depth %></p>
 <hr>
 <p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('prod_category') %></b>: <%= @product.prod_category.description %></p>
-<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('status') %></b>: <%= t("activerecord.enum.product.status.#{@product.status}") %></p>
+<p class="card-text mb-1 mt-2"><b><%= Product.human_attribute_name('status') %></b>: <%= t("activerecord.enum.product.status.#{@product.status}") %></p> 
 
-<%= link_to "Editar", edit_product_path(@product) %>
+<%if @product.selected?%>
+ Lote: <%= link_to @product.lot.code, lot_path(@product.lot) if @product.lot.aproved?%>
+<%end%>
+
+<%= link_to "Editar", edit_product_path(@product) if administrator_signed_in?%> 

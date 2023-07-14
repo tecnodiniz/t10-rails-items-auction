@@ -8,6 +8,8 @@ class LotItemsController < ApplicationController
   end
 
   def create
+    # return redirect_to lot_path(@lot),notice: 'Nenhum item foi adicionado' if params[:product_id].nil?
+   
     @lot_item = LotItem.new(params.require(:lot_item).permit(:product_id).merge(lot: @lot))
     if @lot_item.save
       @lot_item.product.update(status: :selected)
@@ -19,10 +21,12 @@ class LotItemsController < ApplicationController
   end
 
   def destroy
-    if LotItem.find(params[:id]).destroy
-      Product.find(params[:product_id]).update(satus: :available)
-      redirect_to lot_path(@lot), notice: 'Item removido com sucesso'
-    end
+    lot_item = LotItem.find(params[:id])
+    lot_item.product.update(status: :available)
+    lot_item.destroy
+
+    redirect_to lot_path(@lot), notice: 'Item removido com sucesso'
+    
   end
 
   private 

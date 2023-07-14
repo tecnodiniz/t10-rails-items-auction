@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_administrator!, only: %i[new edit update create]
   before_action :set_product, only: %i[show edit update]
 
   def index

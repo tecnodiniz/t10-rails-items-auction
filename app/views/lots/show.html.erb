@@ -21,13 +21,14 @@
    <div>
       <%@lot.lot_items.each do |item|%>
          <div id=<%=item.id%>>
-            <%= item.product.name%> <%= button_to "Remover", lot_lot_item_path(item), method: :delete %>
+            <%= link_to item.product.name, product_path(item.product)%> <%= button_to "Remover", lot_lot_item_path(item), method: :delete if current_administrator %>
          </div>
       <%end%>
    </div>
    
    <%if current_administrator%>
       <%= link_to "Adicionar itens", new_lot_lot_item_path(@lot) %>
+
       <%= link_to "Editar", edit_lot_path(@lot) %>
       <%else%>
          <%= link_to "Dar lance", edit_lot_path(@lot) if I18n.l(@lot.start_date) <= I18n.l(Time.zone.today) %> 
