@@ -1,0 +1,5 @@
+pt-BR:
+  administrators:
+    create_admin: 
+      success: Administrador cadastrado com sucesso
+      failure: Erro, não foi possível criar administrador

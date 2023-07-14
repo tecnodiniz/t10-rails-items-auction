@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
     if email_domain_allowed?(params[:user][:email])
       super
     else
-      flash[:alert] = 'O domínio @leilaodogalpao.com.br não é permitido.'
+      flash[:alert] = t('.alert')
       redirect_to new_user_registration_path
     end
   end

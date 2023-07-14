@@ -13,21 +13,15 @@ feature ' Administrador se loga na aplicação ' do
 
     expect(page).to have_content 'Login efetuado com sucesso'
     expect(page).to have_content 'admin@leilaodogalpao.com.br'
-
   end
   scenario 'e vê email no navbar' do
     user = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password: 'password', cpf: '123456789')
 
     login_as user
 
-
     visit root_path
 
     expect(current_path).to eq root_path
     expect(page).to have_content 'admin@leilaodogalpao.com.br'
-
   end
-
-
-
 end

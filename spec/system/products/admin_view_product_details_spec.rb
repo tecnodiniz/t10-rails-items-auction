@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'Administrador vê detalhes do produto' do
   scenario 'com sucesso' do
-    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password:'password', cpf: '44047449865')
+    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password: 'password', cpf: '44047449865')
     category = ProdCategory.create!(description: 'Eletrônico')
     logo = fixture_file_upload('spec/support/images/logo.png', 'image/png')
-    product = Product.create!(name: 'TV 32 Samsung', width: '30', height: '20', weight:'15', depth: '10',
-                      prod_category: category, logo: logo)
+    product = Product.create!(name: 'TV 32 Samsung', width: '30', height: '20', weight: '15', depth: '10',
+                              prod_category: category, logo:)
 
     login_as admin
 
@@ -26,7 +26,5 @@ feature 'Administrador vê detalhes do produto' do
     expect(page).to have_content 'Profundidade: 10'
     expect(page).to have_content 'Categoria: Eletrônico'
     expect(page).to have_content 'status: Disponível'
-
   end
-
 end

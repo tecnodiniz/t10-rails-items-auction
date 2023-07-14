@@ -10,6 +10,5 @@ feature 'Usuário administrator acessa página inicial' do
     expect(page).to have_content 'Página Principal'
     expect(page).to have_content 'Lotes em andamento'
     expect(page).to have_content 'Lotes futuros'
-
   end
 end

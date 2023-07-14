@@ -1,0 +1,5 @@
+pt-BR:
+  users:
+    create:
+      success: User was successfully created.
+      alert: Preencha os campos corretamente

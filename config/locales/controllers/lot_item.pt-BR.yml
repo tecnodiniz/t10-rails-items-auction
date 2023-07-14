@@ -1,0 +1,6 @@
+pt-BR:
+  lot_items:
+    create: 
+      failure: Não foi possível adicionar item
+    destroy: 
+      success: Item removido com sucesso

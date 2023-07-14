@@ -2,12 +2,12 @@ require 'rails_helper'
 
 feature 'Administrador edita produto' do
   scenario 'com sucesso ' do
-    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password:'password', cpf: '44047449865')
+    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password: 'password', cpf: '44047449865')
     category = ProdCategory.create!(description: 'Doméstico')
-    category2 = ProdCategory.create!(description: 'Eletrônico')
+    ProdCategory.create!(description: 'Eletrônico')
     logo = fixture_file_upload('spec/support/images/logo.png', 'image/png')
-    product = Product.create!(name: 'TV 32 Samsung', width: '30', height: '20', weight:'15', depth: '10',
-                      prod_category: category, logo: logo)
+    product = Product.create!(name: 'TV 32 Samsung', width: '30', height: '20', weight: '15', depth: '10',
+                              prod_category: category, logo:)
 
     login_as admin
 
@@ -23,9 +23,8 @@ feature 'Administrador edita produto' do
     fill_in 'Peso',	with: '5'
     fill_in 'Profundidade', with: '3'
     select category.description, from: 'Categoria'
-    
+
     click_on 'Atualizar Produto'
-   
 
     expect(page).to have_content 'Produto editado com sucesso'
     expect(page).to have_content 'TV 32" Samsung'
@@ -36,8 +35,5 @@ feature 'Administrador edita produto' do
     expect(page).to have_content 'Profundidade: 3'
     expect(page).to have_content 'Categoria: Doméstico'
     expect(page).to have_content 'status: Disponível'
-    
-
   end
-
 end

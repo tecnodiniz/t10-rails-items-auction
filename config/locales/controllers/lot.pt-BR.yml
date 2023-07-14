@@ -1,0 +1,9 @@
+pt-BR:
+  lots:
+    create:
+      success: Lote criado com sucesso
+      failure: Não foi possível cirar lote
+    update:
+      success: Lote atualizado com sucesso
+      failure: Não foi possível atualizar
+    not_allowed: Acesso não autorizado.

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Administrador cadastra produto' do
   scenario 'com sucesso' do
-    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password:'password', cpf: '44047449865')
+    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password: 'password', cpf: '44047449865')
     category = ProdCategory.create!(description: 'Eletrônico')
 
     login_as admin
@@ -26,8 +26,8 @@ feature 'Administrador cadastra produto' do
     expect(page).to have_content 'TV 32 Samsung'
     expect(page).to have_content 'Disponível'
   end
-  scenario 'e não preenche todos os campos' do 
-    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password:'password', cpf: '44047449865')
+  scenario 'e não preenche todos os campos' do
+    admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', password: 'password', cpf: '44047449865')
 
     login_as admin
 
@@ -51,6 +51,5 @@ feature 'Administrador cadastra produto' do
     expect(page).to have_content 'Peso não pode ficar em branco'
     expect(page).to have_content 'Profundidade não pode ficar em branco'
     expect(page).to have_content 'Logo não pode ficar em branco'
-
   end
 end

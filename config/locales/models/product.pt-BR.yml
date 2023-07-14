@@ -4,6 +4,7 @@ pt-BR:
       product:
         one: Produto
         other: Produtos
+        message: deve conter 3 letras e 6 caracteres
     attributes:
       product:
         name: Nome

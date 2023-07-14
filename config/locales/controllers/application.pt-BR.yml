@@ -1,0 +1,4 @@
+pt-BR:
+  application:
+    authenticate_administrator: 
+      not_allowed: Acesso não autorizado.

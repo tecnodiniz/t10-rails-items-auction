@@ -9,16 +9,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation,
                                                   :cpf).merge(admin: false))
+    return unless email_domain_allowed?(@user.email)
 
-    if email_domain_allowed?(@user.email)
-      if @user.save
-        redirect_to users_path, notice: 'User was successfully created.'
-      else
-        flash.now[:notice] = 'Prencha os campos corretamente'
-        render 'new'
-      end
+    if @user.save
+      redirect_to users_path, notice: t('.success')
     else
-      flash.now[:notice] = 'O domínio @leilaodogalpao.com.br não é permitido'
+      flash.now[:notice] = t('.alert')
       render 'new'
     end
   end

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit({ admin: [] }, :email, :password, :password_confirmation, :cpf)
-      
     end
     devise_parameter_sanitizer.permit(:sign_up) do |administrator_params|
       administrator_params.permit(:email, :password, :password_confirmation, :cpf)
@@ -14,12 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_administrator!
-    return redirect_to root_path if !current_administrator.present?
-      
-      unless current_administrator.email.include?("@leilaodogalpao.com.br")
-        flash[:alert] = 'Acesso não autorizado.'
-        redirect_to root_path
-      end
+    return redirect_to root_path if current_administrator.blank?
+
+    return if current_administrator.email.include?('@leilaodogalpao.com.br')
+
+    flash[:alert] = t('.not_allowed')
+    redirect_to root_path
   end
-  
 end
