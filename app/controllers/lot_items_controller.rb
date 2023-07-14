@@ -1,42 +1,33 @@
 class LotItemsController < ApplicationController
   before_action :authenticate_administrator!
+  before_action :set_lot
 
   def new 
-    @lot = Lot.find(params[:lot_id])
     @lot_item = LotItem.new
 
   end
 
   def create
-    @lot_item = LotItem.new(params.require(:lot_item).permit(:lot_id, :product_id))
-    
-    binding.pry
-    
+    @lot_item = LotItem.new(params.require(:lot_item).permit(:product_id).merge(lot: @lot))
     if @lot_item.save
-
-      
-      
-      
-      redirect_to lots_all_path, notice: "Item adicionado ao lote: #{@lot.code}"
+      @lot_item.product.update(status: :selected)
+      redirect_to lot_path(@lot), notice: "Item adicionado ao lote: #{@lot.code}"
     else
-      redirect_to lots_all_path, notice: 'Não há itens para adicionar'
+      flash.now[:notice] = 'Não foi possível adicionar item'
+      render :new
     end
   end
 
   def destroy
-    lot_item = LotItem.find(params[:id])
-    lot = lot_item.lot
-
-    if lot.aproved == 'aprovado'
-      redirect_to view_items_path(lot.id), notice: 'Não é possível remover itens'
-    else
-      item = lot_item.item
-      lot_item.destroy
-
-      item.update(selected: false)
-
-      redirect_to view_items_path(lot.id), notice: 'Item removido'
-
+    if LotItem.find(params[:id]).destroy
+      Product.find(params[:product_id]).update(satus: :available)
+      redirect_to lot_path(@lot), notice: 'Item removido com sucesso'
     end
+  end
+
+  private 
+
+  def set_lot
+    @lot = Lot.find(params[:lot_id])
   end
 end

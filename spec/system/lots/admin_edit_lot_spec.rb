@@ -4,7 +4,7 @@ feature 'Administrador registra lote' do
   scenario 'com sucesso' do
     admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', cpf: '44047449865', password: 'password')
     lot = Lot.create!(code: 'BAH295403', start_date: Time.zone.today, limit_date: 5.days.from_now,
-                         min_value: '400', dif_value: '400', administrator: admin)
+                      min_value: '400', dif_value: '400', administrator: admin)
 
     login_as admin
 
@@ -29,7 +29,5 @@ feature 'Administrador registra lote' do
     expect(page).to have_content 'Lance mínimo: R$400.0'
     expect(page).to have_content 'Diferença de lance: R$500.0'
     expect(page).to have_content 'Status: aguardando aprovação'
-
   end
-  
 end

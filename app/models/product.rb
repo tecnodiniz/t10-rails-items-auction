@@ -6,6 +6,8 @@ class Product < ApplicationRecord
   before_validation :generate_code
   validates :name, :width, :height, :weight, :depth, :logo, :cod, presence: true
   validates :cod, uniqueness: true
+  has_many :lot_items
+  has_one :lot, through: :lot_items
 
   def generate_code
     self.cod = SecureRandom.alphanumeric(20)

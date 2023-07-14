@@ -1,6 +1,5 @@
 class LotItem < ApplicationRecord
   belongs_to :lot
-  belongs_to :item
+  belongs_to :product
 
-  validates :item_id, presence: true
 end

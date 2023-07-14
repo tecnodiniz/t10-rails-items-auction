@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   resources :lots, only: %i[new create index show edit update] do 
     resources :lot_items, only: %i[new create destroy ] do 
+  
     end
 
     resources :bids, only: [:create]

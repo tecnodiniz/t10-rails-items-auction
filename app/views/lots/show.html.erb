@@ -15,8 +15,23 @@
       Diferença de lance: R$<%=@lot.dif_value%></br >
       Status: <%= t("activerecord.enum.lot.status.#{@lot.status}")%>
    </div>
+
+   <h2>Itens do lote</h2>
+
+   <div>
+      <%@lot.lot_items.each do |item|%>
+         <div id=<%=item.id%>>
+            <%= item.product.name%> <%= button_to "Remover", lot_lot_item_path(item), method: :delete %>
+         </div>
+      <%end%>
+   </div>
    
-   <%= link_to "Adicionar itens", new_lot_lot_item_path(@lot) %>
-   <%= link_to "Editar", edit_lot_path(@lot) %>
+   <%if current_administrator%>
+      <%= link_to "Adicionar itens", new_lot_lot_item_path(@lot) %>
+      <%= link_to "Editar", edit_lot_path(@lot) %>
+      <%else%>
+         <%= link_to "Dar lance", edit_lot_path(@lot) if I18n.l(@lot.start_date) <= I18n.l(Time.zone.today) %> 
+
+   <%end%>
 
 </div>
