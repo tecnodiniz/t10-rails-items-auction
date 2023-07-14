@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   
     end
 
-    resources :bids, only: [:create]
+    resources :bids, only: %i[new create]
 
     collection do
       get :lost_all

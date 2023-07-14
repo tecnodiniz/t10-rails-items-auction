@@ -7,7 +7,15 @@
    <div class = "content">
    
    </div>
+   <div>
+      <%if @user_bid.present?%>
+         <h3>Seu lance: <%= @user_bid.value%></h3>
+      <%end%>
+      <%if @bid.present?%>
+         <h4>Último lance: <%= @last_bid.value%></h4>
+      <%end%>
 
+   </div>
    <div class = "content">
       Início: <%= I18n.localize(@lot.start_date) %> </br >
       Fim: <%=  I18n.localize(@lot.limit_date)  %></br >
@@ -31,7 +39,7 @@
 
       <%= link_to "Editar", edit_lot_path(@lot) %>
       <%else%>
-         <%= link_to "Dar lance", edit_lot_path(@lot) if I18n.l(@lot.start_date) <= I18n.l(Time.zone.today) %> 
+         <%= link_to "Dar lance", new_lot_bid_path(@lot) if I18n.l(@lot.start_date) <= I18n.l(Time.zone.today) %> 
 
    <%end%>
 

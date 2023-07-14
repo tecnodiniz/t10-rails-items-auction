@@ -8,6 +8,7 @@ class Lot < ApplicationRecord
   has_many :lot_items, dependent: :destroy
 
   has_many :products, through: :lot_items
+  has_many :bids, dependent: :destroy
 
   enum status: { awaiting: 1, aproved: 3, finished: 5 }
 

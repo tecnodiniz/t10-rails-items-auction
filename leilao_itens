@@ -1,23 +1,23 @@
 Leilão de itens
 
 Administradores
-	Cadastrar produto
-	Cadastrar lote
+	Cadastrar produto V
+	Cadastrar lote V
 	Aprovar lote
 	Bloquear usuario
 	Visualizar lotes encerrados
 	Calcular vencedor
 
 Usuário regular
-	Criar uma conta
+	Criar uma conta V
 	Buscar produto
-	Ver detalhes do produto
+	Ver detalhes do produto V
 	Dar lance
 	Favoritar lotes
 	
 Vsitante 
-	Visitar página
-	Visualizar lotes
+	Visitar página V
+	Visualizar lotes V
 	Visualizar lotes vencedores
 	
 Backlog
@@ -27,13 +27,13 @@ Backlog
 	
 	Usuário autenticado deve visualizar lote vencedor
 	
-	Visitante deve ser capaz de visualizar a página inicial e ver lotes em andamento e lotes futuros
+	Visitante deve ser capaz de visualizar a página inicial e ver lotes em andamento e lotes futuros V
 	
-	Visitante deve realizar um cadastro na aplicação para realizar lances 
+	Visitante deve realizar um cadastro na aplicação para realizar lances  V
 	
-	Visitante deve ser capaz de visualizar os produtos cadastrados
+	Visitante deve ser capaz de visualizar os produtos cadastrados V
 	
-	Usuário e visitante devem ser capazes de pesquisar um produto
+	Usuário e visitante devem ser capazes de pesquisar um produto 
 	
 	Usuário deve ser capaz de tirar dúvidas sobre um lote
 	Administrador deve responser as dúvidas do usuário referente a um lote

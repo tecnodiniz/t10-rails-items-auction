@@ -7,7 +7,14 @@ class LotsController < ApplicationController
     @lots = Lot.all
   end
 
-  def show; end
+  def show
+    @bid = Bid.where(lot: @lot)
+
+    return unless @bid.any?
+
+    @user_bid = @bid.where(user: current_user).last
+    @last_bid = @bid.last
+  end
 
   def new
     @lot = Lot.new

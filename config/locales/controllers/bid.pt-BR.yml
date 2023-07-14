@@ -1,0 +1,5 @@
+pt-BR:
+  bids:
+    create:
+      success: Lance realizado com sucesso
+      failure: Não foi possível fazer o lance

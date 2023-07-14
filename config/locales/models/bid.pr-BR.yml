@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      bid:
+        one: Lance
+        other: Lances
+    attributes:
+      bid:
+        value: Valor

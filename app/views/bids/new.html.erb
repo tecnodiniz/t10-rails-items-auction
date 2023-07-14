@@ -1,0 +1,9 @@
+<h2>Lance para o lote <%=@lot.code%></h2>
+
+<%= form_with model: [@lot, @bid], id:'form-content' do |f| %>
+  <%= f.label :value %>
+  <%= f.number_field :value %>
+
+  <%= f.submit%>
+  
+<%end%>
