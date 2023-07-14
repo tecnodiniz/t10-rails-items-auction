@@ -1,39 +1,21 @@
 
-
 <div class = "row">
    <div class= "content">
       <h1>Lote <%= @lot.code%></h1>
       
    </div>
-   <p><%= button_to "Favoritar lote", add_favorite_path(@lot.id), method: :post %></p>
-
    <div class = "content">
-     
-      <%if @bid%>
-         <p>Seu lance: <%= @bid.value %></p>
-      <%end%>
-
-      <%if Winner.where(lot_id: @lot.id).any?%>
-         <p>Vencedor do leilão: <%= Winner.find_by(lot_id: @lot.id).user.email%></p>
-      <%end%>
+   
    </div>
 
    <div class = "content">
-      Inicio: <%= I18n.localize(@lot.start_date) %> </br >
+      Início: <%= I18n.localize(@lot.start_date) %> </br >
       Fim: <%=  I18n.localize(@lot.limit_date)  %></br >
       Lance mínimo: R$<%=@lot.min_value%></br >
       Diferença de lance: R$<%=@lot.dif_value%></br >
+      Status: <%= t("activerecord.enum.lot.status.#{@lot.status}")%>
    </div>
+   
+   <%= link_to "Editar", edit_lot_path(@lot) %>
 
-   <div class = "content">
-         <h1>Items</h1>
-         <ul>
-         <% @items.each do |i|%>
-            <li> <%= link_to i.item.name, item_path(i.item) %> </li>
-         <%end%>
-         </ul>
-   </div>
-   <div class = "content">
-        <%= link_to "Dar lance", make_bid_path(@lot) %>
-   </div>
 </div>

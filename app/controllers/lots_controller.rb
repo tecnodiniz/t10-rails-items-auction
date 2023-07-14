@@ -23,12 +23,21 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
-    if @lot.status == 'aprovado'
-      @items = LotItem.where(lot_id: params[:id])
+  end
 
-      @bid = Bid.where(lot_id: params[:id], user_id: current_user.id).last if user_session
+  def edit 
+    @lot = Lot.find(params[:id])
+  end
+
+  def update
+    @lot = Lot.find(params[:id])
+    if @lot.update(params.require(:lot).permit(:code, :start_date, :limit_date, :min_value, :dif_value).merge(
+                                                    administrator_id: current_administrator.id))
+
+    redirect_to lot_path(@lot), notice: 'Lote atualizado com sucesso'
     else
-      redirect_to root_path
+      flash.now[:notice] = 'Não foi possível atualizar'
+      render :edit
     end
   end
 

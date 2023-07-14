@@ -11,3 +11,9 @@ pt-BR:
         limit_date: Data limite
         min_value: Lance mínimo
         dif_value: Diferença de lance
+    enum:
+      lot:
+        status:
+          awaiting: aguardando aprovação
+          aproved: aprovado
+          finished: encerrado

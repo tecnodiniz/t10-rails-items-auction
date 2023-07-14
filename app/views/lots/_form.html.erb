@@ -1,0 +1,19 @@
+<%= form_with model: @lot do |f|%>
+    <%=f.label :code %>
+    <%=f.text_field :code %>
+
+    <%=f.label :start_date %>
+    <%=f.date_field :start_date%>
+
+    <%=f.label :limit_date  %>
+    <%=f.date_field :limit_date%>
+
+    <%=f.label :min_value %>
+    <%=f.number_field :min_value %>
+
+    <%=f.label :dif_value %>
+    <%=f.number_field :dif_value %>
+
+    <%=f.submit%>
+
+<%end%>

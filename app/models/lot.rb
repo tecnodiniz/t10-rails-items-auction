@@ -9,6 +9,6 @@ class Lot < ApplicationRecord
   validates :limit_date, comparison: { greater_than_or_equal_to: :start_date }
 
 
-  enum status: { 'aprovado': true, 'aguardando aprovação': false }
+  enum status: { awaiting: 1, aproved: 3, finished: 5 }
 
 end

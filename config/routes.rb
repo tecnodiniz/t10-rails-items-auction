@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   end
   
-  resources :lots, only: %i[new create index show] do 
+  resources :lots, only: %i[new create index show edit update] do 
     resources :lot_items, only: %i[create index destroy] do 
       collection do
         get :add_item

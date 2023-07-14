@@ -23,7 +23,7 @@
                     <td> <%= I18n.localize(l.limit_date) %> </td>
                     <td> R$<%= l.min_value %> </td>
                     <td> R$<%= l.dif_value %> </td>
-                    <td><%= l.status %> </td>
+                    <td> <%= t("activerecord.enum.lot.status.#{l.status}")  %> </td>
                     
                 </tr>
         <% end%>
