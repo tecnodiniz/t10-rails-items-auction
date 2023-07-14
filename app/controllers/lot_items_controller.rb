@@ -1,38 +1,26 @@
 class LotItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_administrator!
 
-  def index
-    @items = LotItem.where(lot_id: params[:id])
-    @lot = Lot.find(params[:id])
+  def new 
+    @lot = Lot.find(params[:lot_id])
+    @lot_item = LotItem.new
 
-    return unless @lot.aproved == 'aprovado'
-
-    log = Aproved.find_by(lot_id: params[:id])
-    @user = log.user
   end
 
   def create
-    @lot_item = LotItem.new(params.require(:lot_item).permit(:lot_id, :item_id))
-
-    @item = @lot_item.item if @lot_item.item
-    @lot = @lot_item.lot
-
+    @lot_item = LotItem.new(params.require(:lot_item).permit(:lot_id, :product_id))
+    
+    binding.pry
+    
     if @lot_item.save
 
-      @item.update(selected: true)
-
+      
+      
+      
       redirect_to lots_all_path, notice: "Item adicionado ao lote: #{@lot.code}"
     else
       redirect_to lots_all_path, notice: 'Não há itens para adicionar'
     end
-  end
-
-  def add_item
-    @lot_item = LotItem.new
-
-    return unless Lot.find(params[:id]).aproved == 'aprovado'
-
-    redirect_to lots_all_path, notice: 'Não é possível adicionar itens'
   end
 
   def destroy

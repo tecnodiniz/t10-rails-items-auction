@@ -18,15 +18,9 @@ Rails.application.routes.draw do
   end
   
   resources :lots, only: %i[new create index show edit update] do 
-    resources :lot_items, only: %i[create index destroy] do 
-      collection do
-        get :add_item
-        get :view_items
-        post :add_item_lot
-        
-      end
-      
+    resources :lot_items, only: %i[new create destroy ] do 
     end
+
     resources :bids, only: [:create]
 
     collection do

@@ -1,0 +1,12 @@
+<h1>Adicionar item</h1>
+
+
+<h3>Lote <%= @lot.code%>
+<%= form_with model: [@lot, @lot_item], id:'form-content' do |f|%>
+
+    <%= f.label :product_id, 'Produto'%>
+    <%= f.collection_select :product_id, Product.where(status: :available), :id, :name %>
+
+    <%= f.submit 'Adicionar' %>
+
+<%end%>

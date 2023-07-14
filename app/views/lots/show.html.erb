@@ -16,6 +16,7 @@
       Status: <%= t("activerecord.enum.lot.status.#{@lot.status}")%>
    </div>
    
+   <%= link_to "Adicionar itens", new_lot_lot_item_path(@lot) %>
    <%= link_to "Editar", edit_lot_path(@lot) %>
 
 </div>

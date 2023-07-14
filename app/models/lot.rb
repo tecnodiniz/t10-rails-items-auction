@@ -7,6 +7,8 @@ class Lot < ApplicationRecord
                    format: { with: /\A[a-zA-Z]{3}\w{6}\z/, message: 'deve conter 3 letras e 6 caracteres' }
   validates :start_date, comparison: { greater_than_or_equal_to: Time.zone.today }
   validates :limit_date, comparison: { greater_than_or_equal_to: :start_date }
+  has_many :lot_items
+  has_many :products, through: :lot_items
 
 
   enum status: { awaiting: 1, aproved: 3, finished: 5 }
