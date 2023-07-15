@@ -1,3 +1,11 @@
+<% if @bid.errors.any?%>
+  <ul>
+  <%@bid.errors.full_messages.each do |msg|%>
+  <li><%=msg%></li>
+  <%end%>
+  </ul>
+<%end%>
+
 <h2>Lance para o lote <%=@lot.code%></h2>
 
 <%= form_with model: [@lot, @bid], id:'form-content' do |f| %>
