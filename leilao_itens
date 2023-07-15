@@ -3,7 +3,7 @@ Leilão de itens
 Administradores
 	Cadastrar produto V
 	Cadastrar lote V
-	Aprovar lote
+	Aprovar lote V
 	Bloquear usuario
 	Visualizar lotes encerrados
 	Calcular vencedor
@@ -12,7 +12,7 @@ Usuário regular
 	Criar uma conta V
 	Buscar produto
 	Ver detalhes do produto V
-	Dar lance
+	Dar lance V
 	Favoritar lotes
 	
 Vsitante 
@@ -21,7 +21,7 @@ Vsitante
 	Visualizar lotes vencedores
 	
 Backlog
-	Usuário autenticado deve fazer uma lance
+	Usuário autenticado deve fazer uma lance V
 	
 	Usuário autenticado deve favoritar um lote
 	

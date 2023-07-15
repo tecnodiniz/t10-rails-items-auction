@@ -28,13 +28,13 @@
    <div>
       <%@lot.lot_items.each do |item|%>
          <div id=<%=item.id%>>
-            <%= link_to item.product.name, product_path(item.product)%> <%= button_to "Remover", lot_lot_item_path(item), method: :delete if current_administrator %>
+            <%= link_to item.product.name, product_path(item.product)%> <%= button_to "Remover", lot_lot_item_path(@lot, item), method: :delete if current_administrator && @lot.awaiting? %>
          </div>
       <%end%>
    </div>
    
    <%if current_administrator%>
-      <%= link_to "Adicionar itens", new_lot_lot_item_path(@lot) %>
+      <%= link_to "Adicionar itens", new_lot_lot_item_path(@lot) if @lot.awaiting?%>
 
       <%= link_to "Editar", edit_lot_path(@lot) %>
       <% if current_administrator.id != @lot.administrator.id%>
