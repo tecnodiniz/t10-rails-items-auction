@@ -3,3 +3,5 @@ pt-BR:
     create:
       success: Lance realizado com sucesso
       failure: Não foi possível fazer o lance
+    new:
+      finished: Lances encerrados

@@ -41,7 +41,7 @@
          <%= button_to "Aprovar lote", aprove_lot_path(@lot), method: :put if @lot.awaiting?%> 
       <%end%>
    <%else%>
-      <%= link_to "Dar lance", new_lot_bid_path(@lot) if I18n.l(@lot.start_date) <= I18n.l(Time.zone.today) %> 
+      <%= link_to "Dar lance", new_lot_bid_path(@lot) if @lot.start_date <= Time.zone.today %> 
    <%end%>
 
 </div>

@@ -8,7 +8,6 @@ class LotItemsController < ApplicationController
   end
 
   def create
-
     @lot_item = LotItem.new(params.require(:lot_item).permit(:product_id).merge(lot: @lot))
     if @lot_item.save
       @lot_item.product.update(status: :selected)
@@ -20,7 +19,6 @@ class LotItemsController < ApplicationController
   end
 
   def destroy
-
     lot_item = LotItem.find(params[:id])
     lot_item.product.update(status: :available)
     lot_item.destroy

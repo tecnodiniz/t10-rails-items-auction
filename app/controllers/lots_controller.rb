@@ -43,12 +43,12 @@ class LotsController < ApplicationController
   end
 
   def aprove
-   if @lot.update(status: :aproved)
-      redirect_to lot_path(@lot), notice: 'Lote aprovado com sucesso'
-   else
-    flash.now[:notice] = 'Não foi possível aprovar o lote'
-    render :show
-   end
+    if @lot.update(status: :aproved)
+      redirect_to lot_path(@lot), notice: t('.success')
+    else
+      flash.now[:notice] = t('failure')
+      render :show
+    end
   end
 
   private

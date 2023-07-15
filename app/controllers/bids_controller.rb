@@ -3,6 +3,7 @@ class BidsController < ApplicationController
   before_action :set_lot, only: %i[new create]
   def new
     @bid = Bid.new
+    return redirect_to lot_path(@lot), notice: t('.finished') if @lot.limit_date < Time.zone.today
   end
 
   def create

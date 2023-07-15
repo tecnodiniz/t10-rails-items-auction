@@ -7,3 +7,7 @@ pt-BR:
       success: Lote atualizado com sucesso
       failure: Não foi possível atualizar
     not_allowed: Acesso não autorizado.
+    aprove:
+      success: Lote aprovado com sucesso
+      failure: Não foi possível aprovar o lote
+
