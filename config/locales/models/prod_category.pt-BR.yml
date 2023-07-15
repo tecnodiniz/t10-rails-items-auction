@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      prod_category:
+        one: Categoria
+        other: Categorias
+    attributes:
+      prod_category:
+        description: Categoria

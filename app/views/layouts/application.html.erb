@@ -29,9 +29,12 @@
             </li>
              <li> 
                 <%= link_to "Produtos", products_path, class: 'nav-link' %>
+                
               </li>
+              <li> <%= link_to "Categorias", prod_categories_path, class:'nav-link'%></li>
               <li> 
               <%if administrator_signed_in?%>
+              
                 <li><%= link_to "Lotes para leilão", lots_path, class:'nav-ink' %> </li>
                 <li> <%= link_to "Gerenciar usuários", administrators_path, class:'nav-link'%></li>
                 <%= current_administrator.email %>

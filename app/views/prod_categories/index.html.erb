@@ -1,0 +1,7 @@
+<%if administrator_signed_in?%>
+  <%= link_to 'Nova categoria', new_prod_category_path%>
+<%end%>
+
+<% @categories.each do |category|%>
+  <%= category.description%>
+<%end%>

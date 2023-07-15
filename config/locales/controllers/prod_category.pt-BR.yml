@@ -1,0 +1,5 @@
+pt-BR:
+  prod_categories:
+    create:
+      success: Categoria cadastrada com sucesso
+      failure: Categoria não cadastrada

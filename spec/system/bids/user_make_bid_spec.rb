@@ -35,8 +35,8 @@ feature 'Usuário faz um lance' do
       click_on 'Criar Lance'
 
       expect(page).to have_content 'Lance realizado com sucesso'
-      expect(page).to have_content 'Seu lance: 400'
-      expect(page).to have_content 'Último lance: 400'
+      expect(page).to have_content 'Seu lance: R$400'
+      expect(page).to have_content 'Último lance: R$400'
     end
 
     scenario 'em um lote com um lance existente' do
@@ -77,8 +77,8 @@ feature 'Usuário faz um lance' do
       click_on 'Criar Lance'
 
       expect(page).to have_content 'Lance realizado com sucesso'
-      expect(page).to have_content 'Seu lance: 1200'
-      expect(page).to have_content 'Último lance: 1200'
+      expect(page).to have_content 'Seu lance: R$1200'
+      expect(page).to have_content 'Último lance: R$1200'
     end
   end
 

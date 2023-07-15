@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
   before_action :authenticate_administrator!, only: %i[new create index]
-  before_action :set_lot, only: %i[edit show update]
+  before_action :set_lot, only: %i[edit show update aprove]
   before_action :check_available, only: %i[show]
 
   def index
@@ -40,6 +40,15 @@ class LotsController < ApplicationController
       flash.now[:notice] = t('.failure')
       render :edit
     end
+  end
+
+  def aprove
+   if @lot.update(status: :aproved)
+      redirect_to lot_path(@lot), notice: 'Lote aprovado com sucesso'
+   else
+    flash.now[:notice] = 'Não foi possível aprovar o lote'
+    render :show
+   end
   end
 
   private

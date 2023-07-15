@@ -26,6 +26,7 @@ feature 'Administrador registra lote' do
     expect(page).to have_content '400'
     expect(page).to have_content '500'
     expect(page).to have_content 'aguardando aprovação'
+    expect(page).not_to have_button 'Aprovar lote'
   end
   context 'sem sucesso' do
     scenario 'não preencheu todos os campos' do
