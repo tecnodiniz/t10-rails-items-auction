@@ -5,7 +5,10 @@
       
    </div>
    <div class = "content">
-   
+      <%if user_signed_in?%>
+         <%= button_to "Favoritar lote", favorite_user_favorite_path(current_user, @lot) %>
+
+      <%end%>
    </div>
    <div>
       <%if @winner.present?%>

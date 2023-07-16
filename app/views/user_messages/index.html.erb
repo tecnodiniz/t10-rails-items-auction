@@ -1,0 +1,19 @@
+<h1>Suas mensagens</h1>
+
+ <%if @messages.any?%>
+  <table class = "table">
+          <tr>
+              <th>Título</th>
+              <th>email</th>
+          </tr>
+        
+            <% @messages.each do |msg|%>
+                    <tr>
+                      <td><%= link_to msg.title, user_user_message_path(current_user, msg) %></td>      
+                      <td><%= msg.from_email%></td>          
+                    </tr>
+            <% end%>
+  </table>
+  <%else%>
+  <p>Não há mensagens</p>
+<%end%>

@@ -3,10 +3,13 @@
     <div class ="row">
         <div class="content">
             <%= I18n.localize(Date.today)%>
-            <%if user_session%>
-                <%if Winner.where(user_id: current_user.id).any?%>
-                    <%= link_to "Você venceu um leilão!", user_win_path(current_user) %>
+            <%if user_session %>
+                <%if @user_messages > 1%>
+                    <%= link_to 'Você tem novas mensagens', user_user_messages_path(current_user)%>
+                    <%elsif @user_messages == 1%>
+                    <%= link_to 'Você tem uma nova mensagem', user_user_messages_path(current_user)%>
                 <%end%>
+
             <%end%>
         </div>
     </div>

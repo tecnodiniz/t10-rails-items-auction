@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_125332) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_16_224546) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -151,6 +151,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_125332) do
     t.index ["item_id"], name: "index_solds_on_item_id"
   end
 
+  create_table "user_messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "from_email"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status"
+    t.string "title"
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -189,6 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_125332) do
   add_foreign_key "lot_items", "products"
   add_foreign_key "products", "prod_categories"
   add_foreign_key "solds", "items"
+  add_foreign_key "user_messages", "users"
   add_foreign_key "winners", "lots"
   add_foreign_key "winners", "users"
 end

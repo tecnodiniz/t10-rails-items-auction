@@ -9,6 +9,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :bids, dependent: :destroy
+  has_many :messages, dependent: :nullify
+  has_many :favorites, dependent: :destroy
 
   def cpf_validation
     errors.add(:cpf, 'INVÁLIDO!') unless cpf_valid_p1(cpf) && cpf_valid_p2(cpf)

@@ -7,7 +7,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'home#index'
 
-  resources :users, only: %i[index new create]
+  resources :users, only: %i[index new create] do 
+    resources :user_messages,only: %i[index show]
+    resources :favorites, only: %i[index destroy] do 
+      member do 
+        post :favorite
+      end
+    end
+  end
   resources :products, only: %i[new create index show edit update]
   resources :prod_categories, only: %i[new create index]
   resources :administrators, only: %i[new create index show] do 
@@ -37,8 +44,6 @@ Rails.application.routes.draw do
     end
   end
  
-  resources :favorites, only: [:index]
-
   post 'create_user' => 'users#create'
   get 'new_admin' => 'users#new_admin'
 
