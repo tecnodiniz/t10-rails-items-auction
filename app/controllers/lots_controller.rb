@@ -9,6 +9,7 @@ class LotsController < ApplicationController
 
   def show
     @bid = Bid.where(lot: @lot)
+    @winner = Winner.where(lot: @lot).first if Winner.where(lot: @lot).present?
 
     return unless @bid.any?
 
@@ -61,7 +62,7 @@ class LotsController < ApplicationController
   end
 
   def finished
-    @lots = Lot.where(status: %i[finished winned])
+    @lots = Lot.where(status: %i[finished winned no_winner])
   end
 
   private

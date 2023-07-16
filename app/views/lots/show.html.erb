@@ -8,6 +8,9 @@
    
    </div>
    <div>
+      <%if @winner.present?%>
+         <h3>Vencedor: <%= @winner.user.email%> - valor: R$<%=@last_bid.value%></h3>
+      <%end%>
       <%if @user_bid.present?%>
          <h3>Seu lance: R$<%= @user_bid.value%></h3>
       <%end%>

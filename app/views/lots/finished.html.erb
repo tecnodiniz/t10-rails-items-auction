@@ -18,7 +18,7 @@
                     <td> R$<%= l.min_value %> </td>
                     <td> R$<%= l.dif_value %> </td>
                     <td> <%= t("activerecord.enum.lot.status.#{l.status}")  %> </td>
-                    <td> <%= button_to 'Calcular vencedor', calc_winner_path(l), method: :post if !l.winned? || l.ended? %> </td>
+                    <td> <%= button_to 'Calcular vencedor', calc_winner_path(l), method: :post if !l.winned? && !l.no_winner? %> </td>
                     
                 </tr>
         <% end%>

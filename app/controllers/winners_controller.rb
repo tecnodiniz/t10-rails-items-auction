@@ -11,7 +11,7 @@ class WinnersController < ApplicationController
       @lot.update(status: :winned)
       redirect_to finished_lots_path, notice: message
     else
-      @lot.update(status: :ended)
+      @lot.update(status: :no_winner)
       redirect_to finished_lots_path, notice: t('.no_winner')
     end
   end

@@ -17,3 +17,5 @@ pt-BR:
           awaiting: aguardando aprovação
           aproved: aprovado
           finished: encerrado
+          winned: Vencido
+          no_winner: Sem vencedor
