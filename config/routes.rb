@@ -23,8 +23,18 @@ Rails.application.routes.draw do
 
     member do 
       put :aprove
+      put :finish
+    end
+    collection do
+      get :finished
     end
 
+  end
+
+  resources :winners, only: %i[ index ] do 
+    member do 
+      post :calc
+    end
   end
  
   resources :favorites, only: [:index]

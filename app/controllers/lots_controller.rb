@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
   before_action :authenticate_administrator!, only: %i[new create index]
-  before_action :set_lot, only: %i[edit show update aprove]
+  before_action :set_lot, only: %i[edit show update aprove finish]
   before_action :check_available, only: %i[show]
 
   def index
@@ -49,6 +49,19 @@ class LotsController < ApplicationController
       flash.now[:notice] = t('failure')
       render :show
     end
+  end
+
+  def finish
+    if @lot.update(status: :finished)
+      redirect_to lot_path(@lot), notice: t('.success')
+    else
+      flash.now[:notice] = t('failure')
+      render :show
+    end
+  end
+
+  def finished
+    @lots = Lot.where(status: :finished)
   end
 
   private

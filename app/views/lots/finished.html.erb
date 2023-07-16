@@ -1,14 +1,6 @@
+<h2>Lotes finalizados </h2>
 
-<div class = "row">    
-    <div class = "content">
-        <ul class = "menu">
-            <li><%= link_to "Cadastrar novo lote", new_lot_path %></li>
-            <li><%= link_to "Lotes encerrados", finished_lots_path %></li>
-        <ul>
-    </div>
-</div>
-
-    <table class = "table">
+  <table class = "table">
         <tr>
             <th>Código</th>
             <th>Inicio</th>
@@ -16,6 +8,7 @@
             <th>Valor</th>
             <th>Diferença</th>
             <th>Status</th>
+            <th>Action</th>
         </tr>
         <% @lots.each do |l|%>
                 <tr>
@@ -25,6 +18,7 @@
                     <td> R$<%= l.min_value %> </td>
                     <td> R$<%= l.dif_value %> </td>
                     <td> <%= t("activerecord.enum.lot.status.#{l.status}")  %> </td>
+                    <td> <%= button_to 'Calcular vencedor', calc_winner_path(l), method: :post %> </td>
                     
                 </tr>
         <% end%>

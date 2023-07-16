@@ -10,4 +10,7 @@ pt-BR:
     aprove:
       success: Lote aprovado com sucesso
       failure: Não foi possível aprovar o lote
+    finish:
+      success: Leilão encerrado com sucesso
+      failure: Não foi possível encerrar leilão
 

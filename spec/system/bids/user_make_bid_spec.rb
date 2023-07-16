@@ -198,5 +198,40 @@ feature 'Usuário faz um lance' do
 
       expect(page).to have_content 'Lances encerrados'
     end
+
+    scenario 'em um lote encerrado' do
+      user = User.create!(email: 'user@gmail.com', cpf: '66978657689', password: 'password')
+      user2 = User.create!(email: 'user2@gmail.com', cpf: '51027834833', password: 'password')
+
+      admin = Administrator.create!(email: 'admin@leilaodogalpao.com.br', cpf: '44047449865', password: 'password')
+      lot = Lot.new(code: 'BAH295403', start_date: '20/06/2023', limit_date: '10/07/2023',
+                    min_value: '400', dif_value: '400', administrator: admin, status: :finished)
+      lot.save(validate: false)
+
+      lot2 = Lot.create!(code: 'ZAR295403', start_date: 2.days.from_now, limit_date: 5.days.from_now,
+                         min_value: '400', dif_value: '400', administrator: admin, status: :aproved)
+      Lot.create!(code: 'HAZ295403', start_date: 2.days.from_now, limit_date: 5.days.from_now,
+                  min_value: '400', dif_value: '400', administrator: admin, status: :awaiting)
+
+      category = ProdCategory.create!(description: 'Doméstico')
+      category2 = ProdCategory.create!(description: 'Eletrônico')
+      logo = fixture_file_upload('spec/support/images/logo.png', 'image/png')
+      product = Product.create!(name: 'TV 32 Samsung', width: '30', height: '20', weight: '15', depth: '10',
+                                prod_category: category, logo:, status: :selected)
+      product2 = Product.create!(name: 'SOUNDBAR SONY', width: '30', height: '20', weight: '15', depth: '10',
+                                 prod_category: category2, logo:, status: :selected)
+
+      LotItem.create!(lot:, product:)
+      LotItem.create!(lot: lot2, product: product2)
+
+      Bid.create!(lot:, user: user2, value: 400)
+      Bid.create!(lot:, user: user2, value: 800)
+
+      login_as user, scope: :user
+
+      visit lot_path(lot)
+
+      expect(page).not_to have_content 'Dar lance'
+    end
   end
 end
