@@ -61,7 +61,7 @@ class LotsController < ApplicationController
   end
 
   def finished
-    @lots = Lot.where(status: :finished)
+    @lots = Lot.where(status: %i[finished winned])
   end
 
   private

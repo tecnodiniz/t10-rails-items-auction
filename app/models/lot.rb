@@ -10,7 +10,7 @@ class Lot < ApplicationRecord
   has_many :products, through: :lot_items
   has_many :bids, dependent: :destroy
 
-  enum status: { awaiting: 1, aproved: 3, finished: 5 }
+  enum status: { awaiting: 1, aproved: 3, finished: 5, winned: 7, ended: 9 }
 
   private
 
