@@ -17,7 +17,7 @@ feature 'Administrador adicionar item ao lote' do
     login_as admin
 
     visit root_path
-    click_on 'Lotes'
+    click_on 'Lotes para leilão'
     click_on lot.code
     click_on 'Adicionar itens'
     select product.name, from: 'Produto'
@@ -47,7 +47,7 @@ feature 'Administrador adicionar item ao lote' do
     login_as admin
 
     visit root_path
-    click_on 'Lotes'
+    click_on 'Lotes para leilão'
     click_on lot.code
     click_on 'Adicionar itens'
     select product.name, from: 'Produto'

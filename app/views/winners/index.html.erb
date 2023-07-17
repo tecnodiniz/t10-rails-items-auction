@@ -8,6 +8,7 @@
             <tr>
                 <th>Lote</th>
                 <th>Vencedor</th>
+                <th>Lance</th>
         
             </tr>
             <% @winners.each do |w|%>
@@ -15,6 +16,7 @@
                 <tr>
                     <td>  <%= link_to w.lot.code, lot_path(w.lot) %> </td>
                     <td> <%= w.user.email %> </td>
+                    <td> R$ <%= w.user.bids.select { |bid| bid.lot == w.lot }.last.value %> </td>
                 </tr>
 
             <% end%>

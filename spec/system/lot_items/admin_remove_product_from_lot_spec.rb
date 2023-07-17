@@ -19,7 +19,7 @@ feature 'Administrador remove item do lote' do
     login_as admin
 
     visit root_path
-    click_on 'Lotes'
+    click_on 'Lotes para leilão'
     click_on lot.code
 
     within('#1') do
@@ -50,7 +50,7 @@ feature 'Administrador remove item do lote' do
     login_as admin
 
     visit root_path
-    click_on 'Lotes'
+    click_on 'Lotes para leilão'
     click_on lot.code
 
     within('#1') do

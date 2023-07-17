@@ -5,8 +5,8 @@ Administradores
 	Cadastrar lote V
 	Aprovar lote V
 	Bloquear usuario
-	Visualizar lotes encerrados
-	Calcular vencedor
+	Visualizar lotes encerrados V
+	Calcular vencedor V
 
 Usuário regular
 	Criar uma conta V
@@ -14,7 +14,7 @@ Usuário regular
 	Ver detalhes do produto V
 	Dar lance V
 	Detalhe do lote V
-	Favoritar lotes
+	Favoritar lotes V
 	
 Vsitante 
 	Visitar página V
@@ -24,9 +24,9 @@ Vsitante
 Backlog
 	Usuário autenticado deve fazer uma lance V
 	
-	Usuário autenticado deve favoritar um lote
+	Usuário autenticado deve favoritar um lote V
 	
-	Usuário autenticado deve visualizar lote vencedor
+	Usuário autenticado deve visualizar lote vencedor V
 	
 	Visitante deve ser capaz de visualizar a página inicial e ver lotes em andamento e lotes futuros V
 	

@@ -28,7 +28,7 @@ class WinnersController < ApplicationController
   end
 
   def message
-    "Ganhador: #{@user.email} - valor: R$#{@user.bids.last.value}"
+    "Ganhador: #{@user.email} - valor: R$#{@user.bids.select { |bid| bid.lot == @lot }.last.value}"
   end
 
   def send_message

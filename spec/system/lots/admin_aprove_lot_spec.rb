@@ -21,7 +21,7 @@ feature 'Administrador aprova lote' do
     login_as admin2, scope: :administrator
 
     visit root_path
-    click_on 'Lotes'
+    click_on 'Lotes para leilão'
     click_on lot.code
     click_on 'Aprovar lote'
 
@@ -48,7 +48,7 @@ feature 'Administrador aprova lote' do
     login_as admin2, scope: :administrator
 
     visit root_path
-    click_on 'Lotes'
+    click_on 'Lotes para leilão'
     click_on lot.code
     click_on 'Aprovar lote'
     visit root_path
