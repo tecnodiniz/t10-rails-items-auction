@@ -34,6 +34,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    search_terms = "%#{params[:search]}%"
+    @products =  Product.where('name LIKE :search', search: search_terms)
+  end
+
   private
 
   def set_product

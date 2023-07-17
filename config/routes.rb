@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :products, only: %i[new create index show edit update]
+  resources :products, only: %i[new create index show edit update] do
+    collection do
+      get :search
+    end
+  end
   resources :prod_categories, only: %i[new create index]
   resources :administrators, only: %i[new create index show] do 
     collection do

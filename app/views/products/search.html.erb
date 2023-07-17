@@ -1,0 +1,29 @@
+<h2>Resultado da pesquisa</h2>
+
+<%if @products.any?%>
+  <table class = "table">
+      <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Largura</th>
+          <th>Altura</th>
+          <th>Peso</th>
+          <th>Profundidade</th>
+          <th>Status</th>
+      </tr>
+      <% @products.each do |product|%>
+              <tr>
+                  <td><%=product.cod%></td>
+                  <td><%=product.name%></td>
+                  <td><%=product.width%></td>
+                  <td><%=product.height%></td>
+                  <td><%=product.weight%></td>
+                  <td><%=product.depth%></td>
+                  <td> <%= t("activerecord.enum.product.status.#{product.status}")  %> </td>
+                  
+              </tr>
+      <% end%>
+  </table>
+  <%else%>
+    <p>Nenhum resultado encontrado</p>
+<%end%>
