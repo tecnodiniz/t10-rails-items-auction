@@ -10,7 +10,7 @@ Administradores
 
 Usuário regular
 	Criar uma conta V
-	Buscar produto
+	Buscar produto V
 	Ver detalhes do produto V
 	Dar lance V
 	Detalhe do lote V
@@ -34,7 +34,7 @@ Backlog
 	
 	Visitante deve ser capaz de visualizar os produtos cadastrados V
 	
-	Usuário e visitante devem ser capazes de pesquisar um produto 
+	Usuário e visitante devem ser capazes de pesquisar um produto V
 	
 	Usuário deve ser capaz de tirar dúvidas sobre um lote
 	Administrador deve responser as dúvidas do usuário referente a um lote
