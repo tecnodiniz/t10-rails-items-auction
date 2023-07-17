@@ -13,7 +13,7 @@
       </tr>
       <% @products.each do |product|%>
               <tr>
-                  <td><%=product.cod%></td>
+                  <td><%= link_to product.cod, product_path(product)%></td>
                   <td><%=product.name%></td>
                   <td><%=product.width%></td>
                   <td><%=product.height%></td>
