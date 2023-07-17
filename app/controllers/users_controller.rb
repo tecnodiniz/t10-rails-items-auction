@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation,
                                                   :cpf).merge(admin: false))
+
     return unless email_domain_allowed?(@user.email)
 
     if @user.save

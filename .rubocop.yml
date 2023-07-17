@@ -45,3 +45,6 @@ Lint/EmptyBlock:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
+LexicallyScopedActionFilter:
+  Enabled: false
+

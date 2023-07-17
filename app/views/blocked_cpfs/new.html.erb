@@ -1,0 +1,6 @@
+<%= form_with model: @blocked_cpf do |f|%>
+  <%= f.label :cpf, 'CPF'%>
+  <%= f.text_field :cpf%>
+
+  <%= f.submit 'Bloquear'%>
+<%end%>

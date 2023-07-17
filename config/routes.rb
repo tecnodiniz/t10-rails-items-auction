@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :administrators
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions'}
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -47,8 +47,8 @@ Rails.application.routes.draw do
       post :calc
     end
   end
+
+  resources :blocked_cpfs, only: %i[ new  create]
  
-  post 'create_user' => 'users#create'
-  get 'new_admin' => 'users#new_admin'
 
 end

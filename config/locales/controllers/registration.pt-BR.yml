@@ -2,3 +2,4 @@ pt-BR:
   registrations:
     create:
       alert: O domínio @leilaodogalpao.com.br não é permitido.
+      blocked: CPF bloqueado

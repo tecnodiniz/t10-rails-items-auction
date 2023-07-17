@@ -1,0 +1,4 @@
+pt-BR:
+  sessions:
+    create:
+      blocked: Seu CPF está bloqueado. Entre em contato com o suporte para obter ajuda.

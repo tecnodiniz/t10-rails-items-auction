@@ -1,0 +1,5 @@
+pt-BR:
+  blocked_cpfs:
+    create:
+      success: CPF bloqueado com sucesso
+      failure: Não foi possível bloquear o cpf
