@@ -8,6 +8,7 @@ class LotsController < ApplicationController
   end
 
   def show
+    @doubts = LotDoubt.where(lot: @lot)
     @bid = Bid.where(lot: @lot)
     @winner = Winner.where(lot: @lot).first if Winner.where(lot: @lot).present?
 

@@ -51,4 +51,23 @@
       <%= link_to "Dar lance", new_lot_bid_path(@lot) if @lot.start_date <= Time.zone.today && @lot.aproved?%> 
    <%end%>
 
+   <div >
+       <%= form_with(url: lot_lot_doubts_path(@lot, @doubt), method: :post, class: 'form-control') do |form| %>
+         <%= form.label :doubt, 'Dúvida'%>
+         <%= form.text_area :doubt, class: 'form-control me-2' %>
+        
+        <%= form.submit 'Enviar'%>
+      <% end %>
+
+   </div>
+
+   <h3>Dúvidas</h3>
+      <%if @doubts.any?%>
+         <%@doubts.each do |doubt|%>
+            <%= doubt.user.email%>:
+            <%= doubt.doubt%>
+         <%end%>
+         <%else%>
+            <p>Nenhuma dúvida sobre o lote</p>
+      <%end%>
 </div>
