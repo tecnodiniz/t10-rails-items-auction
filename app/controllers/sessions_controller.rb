@@ -4,11 +4,13 @@ class SessionsController < Devise::SessionsController
   private
 
   def check_block
-    cpf = User.find_by(email: params[:user][:email]).cpf
+    user = User.find_by(email: params[:user][:email])
+    return unless user.present?
+      cpf = user.cpf
+      return unless BlockedCpf.exists?(cpf:)
 
-    return unless BlockedCpf.exists?(cpf:)
-
-    flash[:alert] = t('.blocked')
-    redirect_to new_user_session_path
-  end
+      flash[:alert] = t('.blocked')
+      redirect_to new_user_session_path
+    end
 end
+

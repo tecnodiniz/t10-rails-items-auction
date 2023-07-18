@@ -79,7 +79,7 @@
               <%if doubt.answer_doubts.any?%>
               <h3> Respostas</h3>
                <div>
-                  <%= doubt.answer_doubts.each do |answer| %>
+                  <% doubt.answer_doubts.each do |answer| %>
                      <%= answer.administrator.email%>:
                       <%= answer.answer%>
                   <%end%>

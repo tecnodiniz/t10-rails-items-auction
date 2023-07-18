@@ -9,7 +9,13 @@
         
             <% @messages.each do |msg|%>
                     <tr>
-                      <td><%= link_to msg.title, user_user_message_path(current_user, msg) %></td>      
+                      <td>
+                        <%if msg.unread?%>
+                         <%= link_to msg.title, user_user_message_path(current_user, msg), class: 'link-primary' %>
+                         <%else%>
+                         <%= link_to msg.title, user_user_message_path(current_user, msg), class: 'link-secondary' %>
+                        <%end%>
+                        </td>      
                       <td><%= msg.from_email%></td>          
                     </tr>
             <% end%>

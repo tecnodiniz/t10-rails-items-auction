@@ -1,5 +1,6 @@
 class LotDoubtsController < ApplicationController
   before_action :set_lot, only: %i[create]
+  before_action :authenticate_user!, only: %i[create]
 
   def new
     @doubt = LotDoubt.new
