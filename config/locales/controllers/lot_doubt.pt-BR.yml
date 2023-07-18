@@ -2,4 +2,4 @@ pt-BR:
   lot_doubts:
     create:
       success: Dúvida postada
-      failure: Não foi possível postar a dúvida
+      failure: Não foi possível postar sua dúvida

@@ -11,8 +11,8 @@ class LotDoubtsController < ApplicationController
     if @doubt.save
       redirect_to lot_path(@lot), notice: t('.success')
     else
-      flash.now[:notice] = t('.failure')
-      render lot_path(@lot)
+
+      redirect_to lot_path(@lot), notice: t('.failure')
     end
   end
 
