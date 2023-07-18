@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   resources :lots, only: %i[new create index show edit update] do 
     resources :lot_items, only: %i[new create destroy ]
     resources :bids, only: %i[new create]
-    resources :lot_doubts, only: %i[new create]
+    resources :lot_doubts, only: %i[new create] do 
+      resources :answer_doubts, only: %i[new create]
+    end
 
     member do 
       put :aprove

@@ -1,0 +1,5 @@
+pt-BR:
+  answer_doubts:
+    create: 
+      success: Dúvida respondida
+      failure: Falha ao reponder dúvida

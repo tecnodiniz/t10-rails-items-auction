@@ -24,8 +24,8 @@ feature 'Usuário faz uma dúvida sobre um lote' do
     visit root_path
     click_on lot.code
 
-    fill_in 'Responder', with: 'Enviamos um boleto'
-    click_on 'Enviar'
+    fill_in 'Resposta', with: 'Enviamos um boleto'
+    click_on 'Enviar Resposta'
 
     expect(page).to have_content 'Dúvida respondida'
     expect(page).to have_content 'admin@leilaodogalpao.com.br'

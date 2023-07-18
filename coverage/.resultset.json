@@ -656,6 +656,8 @@
           1,
           1,
           1,
+          1,
+          null,
           null,
           1,
           1,
@@ -787,6 +789,23 @@
           null
         ]
       },
+      "/home/diniz/Workspace/Rails/items_auction/spec/models/answer_doubt_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/diniz/Workspace/Rails/items_auction/app/models/answer_doubt.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/diniz/Workspace/Rails/items_auction/spec/models/aproved_spec.rb": {
         "lines": [
           1,
@@ -909,6 +928,7 @@
           1,
           1,
           null,
+          1,
           1,
           null
         ]
@@ -1445,13 +1465,12 @@
           1,
           null,
           1,
-          0,
+          1,
           null,
-          0,
-          0,
-          0,
-          0,
-          null,
+          1,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -2958,11 +2977,11 @@
           null,
           null,
           1,
-          38,
-          38,
-          38,
+          39,
+          39,
+          39,
           null,
-          38,
+          39,
           null,
           8,
           8,
@@ -3019,7 +3038,7 @@
           1,
           null,
           1,
-          44,
+          45,
           null,
           null,
           1,
@@ -3029,9 +3048,9 @@
           null,
           null,
           1,
-          39,
-          39,
-          22,
+          40,
+          40,
+          23,
           1,
           null,
           null,
@@ -3192,6 +3211,28 @@
           null,
           null,
           1,
+          null
+        ]
+      },
+      "/home/diniz/Workspace/Rails/items_auction/app/controllers/answer_doubts_controller.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
           null
         ]
       },
@@ -3430,6 +3471,6 @@
         ]
       }
     },
-    "timestamp": 1689688168
+    "timestamp": 1689701777
   }
 }

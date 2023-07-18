@@ -66,7 +66,30 @@
          <%@doubts.each do |doubt|%>
             <%= doubt.user.email%>:
             <%= doubt.doubt%>
+
+            <%if current_administrator%>
+               <h3>Responder dúvida</h3>
+               <%= form_with(url: lot_lot_doubt_answer_doubts_path(@lot, doubt, @answer_doubt), method: :post, class: 'form-control') do |form| %>
+                  <%= form.label :answer, 'Resposta'%>
+                  <%= form.text_area :answer, class: 'form-control me-2' %>
+               
+                  <%= form.submit 'Enviar Resposta'%>
+               <% end %>
+            <%end%>
+              <%if doubt.answer_doubts.any?%>
+              <h3> Respostas</h3>
+               <div>
+                  <%= doubt.answer_doubts.each do |answer| %>
+                     <%= answer.administrator.email%>:
+                      <%= answer.answer%>
+                  <%end%>
+                 
+               </div>
+
+              <%end%>
+
          <%end%>
+          
          <%else%>
             <p>Nenhuma dúvida sobre o lote</p>
       <%end%>
